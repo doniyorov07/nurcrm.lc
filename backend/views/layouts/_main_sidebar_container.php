@@ -54,6 +54,36 @@ $sideBarMenus = [
     ],
 
     [
+        'label' => Yii::t('app', 'Rbac'),
+        'icon' => 'fas fa-chalkboard',
+        'url' => '#',
+        'isVisible' => true,
+        'active' => in_array($route, [
+            'theory/index', 'theory/view', 'theory/update', 'theory/create', 'theory/delete',
+            'task-question/index', 'task-question/view', 'task-question/update', 'task-question/create', 'task-question/delete',
+
+        ]),
+        'items' => [
+            [
+                'label' => Yii::t('app', 'Item role yaratish'),
+                'icon' => 'far fa-circle nav-icon',
+                'url' => Url::to(['/auth-item']),
+                'isVisible' => true,
+                'active' => in_array($route, ['auth-item/index', 'auth-item/view', 'auth-item/update', 'auth-item/create', 'auth-item/delete']),
+                'items' => [],
+            ],
+            [
+                'label' => Yii::t('app', 'Assigment userni rolega'),
+                'icon' => 'far fa-circle nav-icon',
+                'url' => Url::to(['/auth-assigment']),
+                'isVisible' => true,
+                'active' => in_array($route, ['auth-assigment/index', 'auth-assigment/view', 'auth-assigment/update', 'auth-assigment/create', 'auth-assigment/delete']),
+                'items' => []
+            ],
+        ]
+    ],
+
+    [
         'label' => Yii::t('app', 'Data'),
         'icon' => 'fas fa-database',
         'url' => Url::to(['/data']),
