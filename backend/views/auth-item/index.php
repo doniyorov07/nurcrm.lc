@@ -1,6 +1,7 @@
 <?php
 
 use common\models\AuthItem;
+use lavrentiev\widgets\toastr\Notification;
 use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -14,6 +15,7 @@ use yii\widgets\Pjax;
 $this->title = 'Auth Items';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="auth-item-index">
 
     <h1><?= Html::encode($this->title) ?></h1>

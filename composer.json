@@ -23,7 +23,8 @@
         "kartik-v/yii2-widget-datepicker": "dev-master",
         "kartik-v/yii2-widget-switchinput": "dev-master",
         "2amigos/yii2-chartjs-widget": "~2.0",
-        "wokster/yii2-translation-manager": "v1.1@dev"
+        "wokster/yii2-translation-manager": "v1.1@dev",
+        "lavrentiev/yii2-toastr": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -1,9 +1,13 @@
 <?php
 
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 
 ?>
+
+<?= \lavrentiev\widgets\toastr\NotificationFlash::widget() ?>
+
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->

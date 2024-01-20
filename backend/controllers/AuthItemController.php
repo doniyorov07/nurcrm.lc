@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\AuthItem;
 use common\models\search\AuthItemSearch;
+use lavrentiev\widgets\toastr\NotificationFlash;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -75,6 +76,9 @@ class AuthItemController extends Controller
             $result['status'] = false;
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 $result['status'] = true;
+                Yii::$app->session->setFlash(NotificationFlash::TYPE_SUCCESS, [
+                    'title' => 'The Internet?',
+                ]);
                 return $result;
             }
             $result['content'] = $this->renderAjax('_form', ['model' => $model]);

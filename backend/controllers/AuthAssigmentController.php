@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\AuthAssignment;
 use common\models\AuthItem;
 use common\models\search\AuthAssigmentSearch;
+use lavrentiev\widgets\toastr\NotificationFlash;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -76,6 +77,10 @@ class AuthAssigmentController extends Controller
         if (Yii::$app->request->isAjax) {
             $result['status'] = false;
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                Yii::$app->session->setFlash(NotificationFlash::TYPE_SUCCESS, [
+                    'title' => 'The Internet?',
+                    'text' => 'That thing is still around?',
+                ]);
                 $result['status'] = true;
                 return $result;
             }

@@ -6,7 +6,6 @@
 
 use backend\assets\AppAsset;
 use yii\bootstrap4\Alert;
-use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
