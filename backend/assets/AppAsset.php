@@ -18,7 +18,7 @@ class AppAsset extends AssetBundle
 
     ];
     public $js = [
-
+        'js/app.js',
         'adminLte3/js/adminlte.min.js',
         '//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js',
         'adminLte3/js/demo.js',

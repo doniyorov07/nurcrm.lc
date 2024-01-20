@@ -70,18 +70,17 @@ class AuthItemController extends Controller
     public function actionCreate()
     {
         $model = new AuthItem();
-
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->save()) {
-                return $this->redirect(['index']);
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if (Yii::$app->request->isAjax) {
+            $result['status'] = false;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $result['status'] = true;
+                return $result;
             }
+            $result['content'] = $this->renderAjax('_form', ['model' => $model]);
+            return $result;
         }
-        return $this->renderAjax('create', [
+        return $this->render('create', [
             'model' => $model,
         ]);
     }
@@ -93,14 +92,21 @@ class AuthItemController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($name)
+    public function actionUpdate(string $name)
     {
         $model = $this->findModel($name);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'name' => $model->name]);
-        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
 
+        if (Yii::$app->request->isAjax) {
+            $result['status'] = false;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $result['status'] = true;
+                return $result;
+            }
+            $result['content'] = $this->renderAjax('_form', ['model' => $model]);
+            return $result;
+        }
         return $this->render('update', [
             'model' => $model,
         ]);
