@@ -3,10 +3,13 @@
 namespace backend\controllers;
 
 use common\models\AuthAssignment;
+use common\models\AuthItem;
 use common\models\search\AuthAssigmentSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * AuthAssigmentController implements the CRUD actions for AuthAssignment model.
@@ -54,30 +57,31 @@ class AuthAssigmentController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($item_name, $user_id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($item_name, $user_id),
-        ]);
-    }
+//    public function actionView($item_name, $user_id)
+//    {
+//        return $this->render('view', [
+//            'model' => $this->findModel($item_name, $user_id),
+//        ]);
+//    }
 
     /**
      * Creates a new AuthAssignment model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+       public function actionCreate()
     {
         $model = new AuthAssignment();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'item_name' => $model->item_name, 'user_id' => $model->user_id]);
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if (Yii::$app->request->isAjax) {
+            $result['status'] = false;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $result['status'] = true;
+                return $result;
             }
-        } else {
-            $model->loadDefaultValues();
+            $result['content'] = $this->renderAjax('_form', ['model' => $model]);
+            return $result;
         }
-
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -95,10 +99,17 @@ class AuthAssigmentController extends Controller
     {
         $model = $this->findModel($item_name, $user_id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'item_name' => $model->item_name, 'user_id' => $model->user_id]);
-        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
 
+        if (Yii::$app->request->isAjax) {
+            $result['status'] = false;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $result['status'] = true;
+                return $result;
+            }
+            $result['content'] = $this->renderAjax('_form', ['model' => $model]);
+            return $result;
+        }
         return $this->render('update', [
             'model' => $model,
         ]);

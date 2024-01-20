@@ -1,5 +1,6 @@
 <?php
 
+use common\models\AuthAssignment;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -10,16 +11,18 @@ use yii\widgets\ActiveForm;
 
 <div class="auth-assignment-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'form-id']); ?>
 
-    <?= $form->field($model, 'item_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'item_name')->dropDownList(
+        AuthAssignment::getAuthItems(),
+    ) ?>
 
-    <?= $form->field($model, 'user_id')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'user_id')->dropDownList(
+        AuthAssignment::getUsers(),
+    ) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success', 'id' => 'save']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

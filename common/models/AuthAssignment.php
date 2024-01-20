@@ -2,7 +2,11 @@
 
 namespace common\models;
 
+
+use common\models\AuthItem;
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "auth_assignment".
@@ -18,7 +22,19 @@ class AuthAssignment extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+
+    public function behaviors(): array
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'updatedAtAttribute' => false,
+            ]
+        ];
+    }
+
+
+    public static function tableName(): string
     {
         return 'auth_assignment';
     }
@@ -57,5 +73,28 @@ class AuthAssignment extends \yii\db\ActiveRecord
     public function getItemName()
     {
         return $this->hasOne(AuthItem::class, ['name' => 'item_name']);
+    }
+
+    public function getUsername()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public static function getAuthItems(): array
+    {
+        return ArrayHelper::map(
+            AuthItem::find()->all(),
+            'name',
+            'name',
+        );
+    }
+
+    public static function getUsers(): array
+    {
+        return ArrayHelper::map(
+            User::find()->all(),
+            'id',
+            'username',
+        );
     }
 }

@@ -59,8 +59,8 @@ $sideBarMenus = [
         'url' => '#',
         'isVisible' => true,
         'active' => in_array($route, [
-            'theory/index', 'theory/view', 'theory/update', 'theory/create', 'theory/delete',
-            'task-question/index', 'task-question/view', 'task-question/update', 'task-question/create', 'task-question/delete',
+            'auth-item/index', 'auth-item/view', 'auth-item/update', 'auth-item/create', 'auth-item/delete',
+            'auth-assigment/index', 'auth-assigment/view', 'auth-assigment/update', 'auth-assigment/create', 'auth-assigment/delete',
 
         ]),
         'items' => [
@@ -73,7 +73,7 @@ $sideBarMenus = [
                 'items' => [],
             ],
             [
-                'label' => Yii::t('app', 'Assigment userni rolega'),
+                'label' => Yii::t('app', 'Userni rolega bog\lash'),
                 'icon' => 'far fa-circle nav-icon',
                 'url' => Url::to(['/auth-assigment']),
                 'isVisible' => true,

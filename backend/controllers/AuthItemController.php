@@ -55,12 +55,12 @@ class AuthItemController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($name)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($name),
-        ]);
-    }
+//    public function actionView($name)
+//    {
+//        return $this->render('view', [
+//            'model' => $this->findModel($name),
+//        ]);
+//    }
 
     /**
      * Creates a new AuthItem model.

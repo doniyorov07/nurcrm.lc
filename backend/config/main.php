@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'timeZone' => 'Asia/Samarkand',
     'language' => 'uz-UZ',
     'modules' => [
         'profile-manager' => [
@@ -22,6 +23,11 @@ return [
         ],
     ],
     'components' => [
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'datetimeFormat' => 'php:d-m-Y  H:i',
+            'timeZone' => 'Asia/Samarkand',
+        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
