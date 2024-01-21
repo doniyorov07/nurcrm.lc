@@ -26,7 +26,7 @@ class Course extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             [['status'], 'integer'],
@@ -55,4 +55,6 @@ class Course extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Group::class, ['course_id' => 'id']);
     }
+
+
 }

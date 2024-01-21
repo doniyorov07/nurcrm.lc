@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use yii\widgets\ActiveForm;
+
 /**
  * AuthItemController implements the CRUD actions for AuthItem model.
  */
@@ -77,7 +77,26 @@ class AuthItemController extends Controller
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 $result['status'] = true;
                 Yii::$app->session->setFlash(NotificationFlash::TYPE_SUCCESS, [
-                    'title' => 'The Internet?',
+                    'type' => Notification::TYPE_ERROR,
+                    'title' => 'Toast Notifications',
+                    'message' => 'Simple javascript toast notifications',
+                    'options' => [
+                        "closeButton" => false,
+                        "debug" => false,
+                        "newestOnTop" => false,
+                        "progressBar" => false,
+                        "positionClass" => Notification::POSITION_TOP_RIGHT,
+                        "preventDuplicates" => false,
+                        "onclick" => null,
+                        "showDuration" => "300",
+                        "hideDuration" => "1000",
+                        "timeOut" => "5000",
+                        "extendedTimeOut" => "1000",
+                        "showEasing" => "swing",
+                        "hideEasing" => "linear",
+                        "showMethod" => "fadeIn",
+                        "hideMethod" => "fadeOut"
+                    ]
                 ]);
                 return $result;
             }

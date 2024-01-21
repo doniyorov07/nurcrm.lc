@@ -36,7 +36,7 @@ $sideBarMenus = [
         'items' => [
             [
                 'label' => Yii::t('app', 'Nazariya'),
-                'icon' => 'far fa-circle nav-icon',
+                'icon' => 'far fa-dot-circle nav-icon',
                 'url' => Url::to(['/theory']),
                 'isVisible' => true,
                 'active' => in_array($route, ['theory/index', 'theory/view', 'theory/update', 'theory/create', 'theory/delete']),
@@ -44,7 +44,7 @@ $sideBarMenus = [
             ],
             [
                 'label' => Yii::t('app', 'Savol va Top'),
-                'icon' => 'far fa-circle nav-icon',
+                'icon' => 'far fa-dot-circle nav-icon',
                 'url' => Url::to(['/task-question']),
                 'isVisible' => true,
                 'active' => in_array($route, ['task-question/index', 'task-question/view', 'task-question/update', 'task-question/create', 'task-question/delete']),
@@ -66,7 +66,7 @@ $sideBarMenus = [
         'items' => [
             [
                 'label' => Yii::t('app', 'Item role yaratish'),
-                'icon' => 'far fa-circle nav-icon',
+                'icon' => 'far fa-dot-circle nav-icon',
                 'url' => Url::to(['/auth-item']),
                 'isVisible' => true,
                 'active' => in_array($route, ['auth-item/index', 'auth-item/view', 'auth-item/update', 'auth-item/create', 'auth-item/delete']),
@@ -74,10 +74,40 @@ $sideBarMenus = [
             ],
             [
                 'label' => Yii::t('app', 'Userni rolega bog\lash'),
-                'icon' => 'far fa-circle nav-icon',
+                'icon' => 'far fa-dot-circle nav-icon',
                 'url' => Url::to(['/auth-assigment']),
                 'isVisible' => true,
                 'active' => in_array($route, ['auth-assigment/index', 'auth-assigment/view', 'auth-assigment/update', 'auth-assigment/create', 'auth-assigment/delete']),
+                'items' => []
+            ],
+        ]
+    ],
+
+    [
+        'label' => Yii::t('app', 'Couse'),
+        'icon' => 'fas fa-chalkboard',
+        'url' => '#',
+        'isVisible' => true,
+        'active' => in_array($route, [
+            'auth-item/index', 'auth-item/view', 'auth-item/update', 'auth-item/create', 'auth-item/delete',
+            'auth-assigment/index', 'auth-assigment/view', 'auth-assigment/update', 'auth-assigment/create', 'auth-assigment/delete',
+
+        ]),
+        'items' => [
+            [
+                'label' => Yii::t('app', 'Course'),
+                'icon' => 'far fa-dot-circle nav-icon',
+                'url' => Url::to(['/course']),
+                'isVisible' => true,
+                'active' => in_array($route, ['course/index', 'course/view', 'course/update', 'course/create', 'course/delete']),
+                'items' => [],
+            ],
+            [
+                'label' => Yii::t('app', 'Group'),
+                'icon' => 'far fa-dot-circle nav-icon',
+                'url' => Url::to(['/group']),
+                'isVisible' => true,
+                'active' => in_array($route, ['group/index', 'group/view', 'group/update', 'group/create', 'group/delete']),
                 'items' => []
             ],
         ]

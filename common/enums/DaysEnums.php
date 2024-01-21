@@ -14,7 +14,7 @@ interface DaysEnums
     ];
 
     public const COLOR = [
-        self::ACTIVE => '<i class="badge badge-success">Faol</i>',
-        self::INACTIVE => '<i class="badge badge-danger">Faol dssads</i>',
+        self::ODD_DAYS => '<i class="badge badge-success">Faol</i>',
+        self::EVEN_DAYS => '<i class="badge badge-danger">Faol dssads</i>',
     ];
 }

@@ -9,6 +9,7 @@ use yii\bootstrap4\Alert;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
+use lavrentiev\widgets\toastr\Notification;
 
 AppAsset::register($this);
 ?>
@@ -50,13 +51,14 @@ AppAsset::register($this);
             </div>
             <div class="card-body">
                 <?php if (Yii::$app->session->getFlash('success')) : ?>
-                    <?php Alert::begin([
+                    <?= Notification::widget([
+                        'type' => Notification::TYPE_SUCCESS,
+                        'message' => 'Muvaffaqqiyatli',
                         'options' => [
-                            'class' => 'alert-success',
-                        ],
-                    ]) ?>
+                            "closeButton" => true,
+                        ]
+                    ]); ?>
                     <?= Yii::$app->session->getFlash('success') ?>
-                    <?php Alert::end() ?>
                 <?php endif; ?>
                 <?= $content ?>
             </div>

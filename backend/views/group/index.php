@@ -1,5 +1,6 @@
 <?php
 
+use common\enums\DaysEnums;
 use common\models\Group;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -30,11 +31,28 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'course_id',
+            //'id',
             'group_name',
-            'days',
-            'hour',
+            [
+                'attribute' => 'course_id',
+                'value' => static function ($model) {
+                    return $model->course ? $model->course->name : '';
+                }
+            ],
+
+            [
+                'attribute' => 'days',
+                'value' => function ($model) {
+                    return DaysEnums::LABELS[$model->days] ?? '';
+                },
+            ],
+            [
+                'attribute' => 'hour',
+                'value' => function ($model) {
+                    return $model->hour ? $model->hour : '';
+                },
+            ],
+
             //'lesson_start',
             //'lesson_end',
             //'status',

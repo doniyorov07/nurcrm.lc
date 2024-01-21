@@ -62,10 +62,13 @@ class Group extends \yii\db\ActiveRecord
      * {@inheritdoc}
      * @return \common\models\query\GroupQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): query\GroupQuery
     {
         return new \common\models\query\GroupQuery(get_called_class());
     }
 
-
+    public function getCourse(): \yii\db\ActiveQuery
+    {
+        return $this->hasOne(Course::class, ['id' => 'course_id']);
+    }
 }
