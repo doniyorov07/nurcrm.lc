@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\base\Exception;
 
 /**
  * This is the model class for table "lids".
@@ -33,16 +34,14 @@ class Lids extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             [['username'], 'unique'],
             [['username', 'full_name', 'number'], 'required'],
             [['number', 'parent_number', 'gender'], 'integer'],
             [['username', 'parent_name', 'telegram', 'location'], 'string', 'max' => 255],
-            ['password', 'string', 'min' => 6],
             [['full_name'], 'string', 'max' => 50],
-
         ];
     }
 
@@ -63,6 +62,18 @@ class Lids extends \yii\db\ActiveRecord
             'telegram' => 'Telegram',
             'location' => 'Location',
         ];
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function setPassword(?string $password): void
+    {
+        if ($password !== null) {
+            $this->password = Yii::$app->getSecurity()->generatePasswordHash($password);
+        } else {
+            $this->password = null;
+        }
     }
 
 

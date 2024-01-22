@@ -1,5 +1,6 @@
 <?php
 
+use common\enums\LidsEnums;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -22,7 +23,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'parent_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'gender')->textInput() ?>
+    <?= $form->field($model, 'gender')->radioList([
+            LidsEnums::MALE => 'Erkak',
+            LidsEnums::FEMALE => 'Ayol',
+    ]) ?>
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
