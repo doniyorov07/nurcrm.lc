@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d9ff673bf1716b4e6c5f13a390c951d",
+    "content-hash": "a8f9f46d5e8a5d4798b0bb0190e62aa5",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
