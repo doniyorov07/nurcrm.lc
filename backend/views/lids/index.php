@@ -30,17 +30,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'username',
+            //'id',
+            //'username',
             'full_name',
             'number',
-            'parent_number',
+//            [
+//                    'attribute' => 'teacher',
+//                    'value' => static  function($model)
+//                    {
+//                        return $model->id;
+//                    }
+//            ],
+            //'parent_number',
             //'parent_name',
             //'gender',
             //'password',
             //'telegram',
             //'location',
-            [
+            [   
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Lids $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
@@ -52,4 +59,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::end(); ?>
 
 </div>
+
+
 
