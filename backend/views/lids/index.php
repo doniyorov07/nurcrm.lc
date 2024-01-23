@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'password',
             //'telegram',
             //'location',
-            [   
+            [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Lids $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
@@ -61,4 +61,34 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 
+
+
+
+
+<style>
+    .offcanvas-menu{
+        top: 50px;
+        right: 0;
+        z-index: 5;
+        transform: translateX(100%);
+        transition: all .4s ease;
+    }
+    .offcanvas-menu.active{
+        transform: translateX(0);
+    }
+    .card-body{
+        background-color: #f9fafa;
+    }
+
+    #telefon, #parenttelefone{
+        outline: 0;
+    }
+    #telefon:valid{
+        border-color: green;
+
+    }
+    #telefon:focus:invalid{
+        border-color: red;
+    }
+</style>
 
