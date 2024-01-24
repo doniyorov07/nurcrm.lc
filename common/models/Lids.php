@@ -38,7 +38,7 @@ class Lids extends \yii\db\ActiveRecord
     {
         return [
             [['username'], 'unique'],
-            [['username', 'full_name', 'number'], 'required'],
+            [['full_name', 'number'], 'required'],
             [['number', 'parent_number', 'gender'], 'integer'],
             [['username', 'parent_name', 'telegram', 'location'], 'string', 'max' => 255],
             [['full_name'], 'string', 'max' => 50],

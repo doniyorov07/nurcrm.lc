@@ -72,7 +72,7 @@ class LidsForm extends Model
     {
         return [
             [['username'], 'unique'],
-            [['username', 'full_name', 'number'], 'required'],
+            [['full_name', 'number'], 'required'],
             [['number', 'parent_number', 'gender'], 'integer'],
             [['username', 'parent_name', 'password', 'telegram', 'location'], 'string', 'max' => 255],
             [['full_name'], 'string', 'max' => 50],

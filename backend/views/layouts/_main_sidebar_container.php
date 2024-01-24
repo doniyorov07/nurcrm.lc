@@ -24,6 +24,15 @@ $sideBarMenus = [
     ],
 
     [
+        'label' => Yii::t('app', 'Lids'),
+        'icon' => 'fas fa-cogs',
+        'url' => Url::to(['/lids']),
+        'active' => in_array($route, ['lids/index', 'lids/update', 'lids/create', 'lids/view']),
+        'isVisible' => true,
+        'items' => [],
+    ],
+
+    [
         'label' => Yii::t('app', 'Maruza'),
         'icon' => 'fas fa-chalkboard',
         'url' => '#',
