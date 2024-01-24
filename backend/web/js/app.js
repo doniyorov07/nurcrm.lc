@@ -1,6 +1,6 @@
 $('#create-button').on('click', function (event){
     event.preventDefault();
-    var  url = $(this).attr('href');
+    const  url = $(this).attr('href');
     $('#myModal').modal('show');
     send(url);
 })
@@ -16,14 +16,13 @@ function send(_url, formData = null){
                 $('#myModal').modal('show').find('#modalContent').html(data.content);
                 $('#save').on('click', function (e) {
                     e.preventDefault();
-                    var form = $('#form-id').serialize();
+                    const form = $('#form-id').serialize();
                     send(_url, form);
                     return false
                 });
                 return false;
             }else {
-                $.pjax.reload({container:"#prl-pjax"})
-                $('#myModal').modal('hide');
+                location.reload();
             }
 
         }

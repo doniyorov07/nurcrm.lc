@@ -76,28 +76,7 @@ class AuthItemController extends Controller
             $result['status'] = false;
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 $result['status'] = true;
-                Yii::$app->session->setFlash(NotificationFlash::TYPE_SUCCESS, [
-                    'type' => Notification::TYPE_ERROR,
-                    'title' => 'Toast Notifications',
-                    'message' => 'Simple javascript toast notifications',
-                    'options' => [
-                        "closeButton" => false,
-                        "debug" => false,
-                        "newestOnTop" => false,
-                        "progressBar" => false,
-                        "positionClass" => Notification::POSITION_TOP_RIGHT,
-                        "preventDuplicates" => false,
-                        "onclick" => null,
-                        "showDuration" => "300",
-                        "hideDuration" => "1000",
-                        "timeOut" => "5000",
-                        "extendedTimeOut" => "1000",
-                        "showEasing" => "swing",
-                        "hideEasing" => "linear",
-                        "showMethod" => "fadeIn",
-                        "hideMethod" => "fadeOut"
-                    ]
-                ]);
+                Yii::$app->session->setFlash('success');
                 return $result;
             }
             $result['content'] = $this->renderAjax('_form', ['model' => $model]);

@@ -16,6 +16,7 @@ use yii\helpers\ArrayHelper;
  * @property string $lesson_start
  * @property string $lesson_end
  * @property int $status
+ * @property int $price
  */
 class Group extends \yii\db\ActiveRecord
 {
@@ -33,8 +34,8 @@ class Group extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['days', 'hour', 'lesson_start', 'lesson_end', 'status'], 'required'],
-            [['days', 'status'], 'integer'],
+            [['price', 'days', 'hour', 'lesson_start', 'lesson_end', 'status'], 'required'],
+            [['days', 'status', 'price'], 'integer'],
             [['hour', 'lesson_start', 'lesson_end'], 'safe'],
             [['group_name'], 'string', 'max' => 255],
             [['course_id'], 'integer']
@@ -54,6 +55,7 @@ class Group extends \yii\db\ActiveRecord
             'hour' => 'Hour',
             'lesson_start' => 'Lesson Start',
             'lesson_end' => 'Lesson End',
+            'price' => 'Price',
             'status' => 'Status',
         ];
     }

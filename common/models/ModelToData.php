@@ -17,6 +17,15 @@ class ModelToData
             );
         }
 
+        public static function getGroup(): array
+        {
+            return ArrayHelper::map(
+                    Group::find()->all(),
+                    'id',
+                    'group_name'
+            );
+        }
+
 
 
 

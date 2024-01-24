@@ -51,6 +51,7 @@ use yii\widgets\ActiveForm;
         'pluginOptions' => [
             'format' => 'yyyy-mm-dd',
             'todayHighlight' => true,
+            'autoclose' => true,
         ],
     ]);
     ?>
@@ -61,6 +62,7 @@ use yii\widgets\ActiveForm;
         'pluginOptions' => [
             'format' => 'yyyy-mm-dd',
             'todayHighlight' => true,
+            'autoclose' => true,
         ],
     ]);
     ?>
@@ -79,6 +81,8 @@ use yii\widgets\ActiveForm;
         ]
     ])
     ?>
+
+    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
 
     <div class="form-group">

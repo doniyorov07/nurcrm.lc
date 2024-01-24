@@ -2,12 +2,15 @@
 
 namespace backend\controllers;
 
-use common\models\Data;
+use common\models\AuthItem;
 use common\models\Lids;
 use common\models\search\LidsSearch;
+use common\models\StudentGroup;
+use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class StudentController extends Controller
 {
@@ -50,6 +53,36 @@ class StudentController extends Controller
     {
         $model = $this->findModel($id);
 
+        return $this->render('view', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionDelete(int $id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    public function actionCreate(int $id): array|string
+    {
+        $ids = $this->findModel($id);
+
+        $model = new StudentGroup([
+            'lids_id' => $ids->id,
+        ]);
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if (Yii::$app->request->isAjax) {
+            $result['status'] = false;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $result['status'] = true;
+                Yii::$app->session->setFlash('success');
+                return $result;
+            }
+            $result['content'] = $this->renderAjax('_form', ['model' => $model]);
+            return $result;
+        }
         return $this->render('view', [
             'model' => $model,
         ]);
