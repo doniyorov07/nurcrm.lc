@@ -26,18 +26,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'group_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'days')->widget(Select2::classname(), [
-        'name' => 'status',
-        'hideSearch' => true,
-        'data' => [
-            DaysEnums::ODD_DAYS => 'Toq kunlar',
-            DaysEnums::EVEN_DAYS => 'Juft kunlar',
-        ],
-        'options' => ['placeholder' => 'Darsni kunini tanlang...'],
-        'pluginOptions' => [
-            'allowClear' => true
-        ]
-    ])?>
+
+    <?= $form->field($model, 'days')->checkboxList(ModelToData::getDays()) ?>
 
 
     <?= $form->field($model, 'hour')->dropDownList(

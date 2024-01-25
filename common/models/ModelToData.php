@@ -26,6 +26,19 @@ class ModelToData
             );
         }
 
+        public static function getDays(): array
+        {
+            return [
+                'dushanba' => 'dushanba',
+                'seshanba' => 'seshanba',
+                'chorshanba' => 'chorshanba',
+                'payshanba' => 'payshanba',
+                'juma' => 'juma',
+                'shanba' => 'shanba',
+                'yakshanba' => 'yakshanba',
+            ];
+        }
+
 
 
 

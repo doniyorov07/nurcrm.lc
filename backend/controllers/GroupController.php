@@ -2,11 +2,14 @@
 
 namespace backend\controllers;
 
+use common\models\forms\GroupForm;
 use common\models\Group;
 use common\models\search\Group as GroupSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * GroupController implements the CRUD actions for Group model.
@@ -67,19 +70,9 @@ class GroupController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Group();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->form(
+            new Group()
+        );
     }
 
     /**
@@ -89,18 +82,27 @@ class GroupController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
-        $model = $this->findModel($id);
+        return $this->form(
+            $this->findModel($id)
+        );
+    }
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+    protected function form(Group $model)
+    {
+
+        $formModel = new GroupForm($model);
+        if ($formModel->load(Yii::$app->request->post()) && $formModel->save()) {
+            return $this->redirect(['index']);
         }
-
-        return $this->render('update', [
-            'model' => $model,
+        return $this->render('_form', [
+            'model' => $formModel,
         ]);
     }
+
+
 
     /**
      * Deletes an existing Group model.

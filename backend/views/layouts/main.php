@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrapper">
     <?= $this->render('_navbar') ?>
     <?= $this->render('_main_sidebar_container') ?>
-    <div class="content-wrapper">
+    <div class="content-wrapper layout-fixed">
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row">

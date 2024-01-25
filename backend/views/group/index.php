@@ -39,11 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->course ? $model->course->name : '';
                 }
             ],
-
             [
                 'attribute' => 'days',
-                'value' => function ($model) {
-                    return DaysEnums::LABELS[$model->days] ?? '';
+                'value' => static function ($model) {
+                    $decoded = json_decode($model->days, true);
+                    return is_array($decoded) ? implode('  ', $decoded) : '';
                 },
             ],
             [

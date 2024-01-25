@@ -11,18 +11,20 @@ use yii\helpers\ArrayHelper;
  * @property int $id
  * @property string|null $course_id
  * @property string|null $group_name
- * @property int $days
+ * @property string|array $days
  * @property string $hour
  * @property string $lesson_start
  * @property string $lesson_end
  * @property int $status
  * @property int $price
+ * @property int $course_name;
  */
 class Group extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
+
     public static function tableName(): string
     {
         return 'group';
@@ -35,8 +37,8 @@ class Group extends \yii\db\ActiveRecord
     {
         return [
             [['price', 'days', 'hour', 'lesson_start', 'lesson_end', 'status'], 'required'],
-            [['days', 'status', 'price'], 'integer'],
-            [['hour', 'lesson_start', 'lesson_end'], 'safe'],
+            [['status', 'price'], 'integer'],
+            [['hour', 'lesson_start', 'lesson_end', 'days'], 'safe'],
             [['group_name'], 'string', 'max' => 255],
             [['course_id'], 'integer']
         ];
@@ -45,7 +47,7 @@ class Group extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
