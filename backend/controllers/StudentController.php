@@ -53,8 +53,10 @@ class StudentController extends Controller
     {
         $model = $this->findModel($id);
 
+        $groups = StudentGroup::find()->where(['lids_id' => $model])->all();
         return $this->render('view', [
             'model' => $model,
+            'groups' => $groups,
         ]);
     }
 

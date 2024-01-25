@@ -4,11 +4,11 @@ namespace common\models\forms;
 
 use common\models\Group;
 use yii\base\Model;
+use yii\helpers\Json;
 
 class GroupForm extends Model
 {
     public Group $model;
-    public ?string $course_name;
     public ?string $group_name;
     public ?string $hour;
     public ?array $days;
@@ -17,9 +17,6 @@ class GroupForm extends Model
     public ?bool $status;
     public ?int $course_id;
     public ?int $price;
-
-
-
 
     public function rules()
     {
@@ -32,13 +29,11 @@ class GroupForm extends Model
         ];
     }
 
-
     public function __construct(Group $model, $config = [])
     {
         $this->model = $model;
-        $this->course_name = $model->course_name;
         $this->group_name = $model->group_name;
-        $this->days = $model->days;
+        $this->days = $model->days ? Json::decode($model->days) : null;
         $this->hour = $model->hour;
         $this->lesson_start = $model->lesson_start;
         $this->lesson_end = $model->lesson_end;
@@ -51,9 +46,8 @@ class GroupForm extends Model
     public function save(): bool
     {
         $model = $this->model;
-        $model->course_name = $this->course_name;
         $model->group_name = $this->group_name;
-        $model->days = json_encode($this->days, true);
+        $model->days = $this->days ? Json::encode($this->days) : null;
         $model->hour = $this->hour;
         $model->lesson_start = $this->lesson_start;
         $model->lesson_end = $this->lesson_end;
@@ -62,5 +56,4 @@ class GroupForm extends Model
         $model->price = $this->price;
         return $model->save(false);
     }
-
 }

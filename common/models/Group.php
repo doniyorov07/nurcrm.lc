@@ -17,7 +17,6 @@ use yii\helpers\ArrayHelper;
  * @property string $lesson_end
  * @property int $status
  * @property int $price
- * @property int $course_name;
  */
 class Group extends \yii\db\ActiveRecord
 {

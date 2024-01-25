@@ -20,9 +20,11 @@ class ModelToData
         public static function getGroup(): array
         {
             return ArrayHelper::map(
-                    Group::find()->all(),
-                    'id',
-                    'group_name'
+                Group::find()->all(),
+                'id',
+                function ($model) {
+                    return $model->group_name . ' ( '. $model->course->name .') ' . ' [' . $model->hour . ']' ;
+                }
             );
         }
 
