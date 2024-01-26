@@ -283,17 +283,22 @@ use yii\widgets\Pjax;
                                                     <hr>
                                                     <div class="mt-2">
                                                         <p  class="text-muted mb-0">Holat: <span class="font-weight-bold text-warning">
-                                                         <?= $group->lids->getStatusLabel() ?>
+                                                         <?php
+                                                         if ($group->lids !== null) {
+                                                             echo $group->lids->getStatusLabel();
+                                                         } else {
+                                                             echo 'Null';
+                                                         }
+                                                         ?>
                                                             </span></p>
                                                     </div>
                                                     <div class="mt-2">
-                                                        <p  class="text-muted mb-0">Talaba qo'shilgan sana: <span class="font-weight-bold text-dark"> 20.01.2024</span></p>
+                                                        <p  class="text-muted mb-0">Talaba qo'shilgan sana: <span class="font-weight-bold text-dark">
+                                                                <?= Yii::$app->formatter->asDate($group->lids->created_at, 'php:d-m-Y') ?>
+</span></p>
                                                     </div>
                                                     <div class="mt-2">
-                                                        <p  class="text-muted mb-0">Faollashtirilgan <span class="font-weight-bold text-dark"> 20.01.2024</span></p>
-                                                    </div>
-                                                    <div class="mt-2">
-                                                        <p  class="text-muted mb-0">Bu talaba uchun narx <span class="font-weight-bold text-dark"> 20.01.2024</span></p>
+                                                        <p  class="text-muted mb-0">Bu talaba uchun narx <span class="font-weight-bold text-dark"><?= $group->group->price?></span></p>
                                                     </div>
                                                 </div>
                                                 <!-- /.card-body -->

@@ -36,6 +36,13 @@ use yii\widgets\ActiveForm;
         <?= Html::submitButton('Saqlash', ['class' => 'btn btn-success', 'id' => 'save']) ?>
     </div>
 
+
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php if ($result['success']) : ?>
+    <div class="alert alert-danger">
+        <?= $result['error'] ?>
+    </div>
+<?php endif; ?>
