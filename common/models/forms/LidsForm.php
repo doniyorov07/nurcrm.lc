@@ -3,6 +3,7 @@
 namespace common\models\forms;
 
 
+use common\enums\LidsEnums;
 use common\models\Lids;
 use Yii;
 use yii\base\Exception;
@@ -23,6 +24,7 @@ class LidsForm extends Model
     public string|null $password;
     public string|null $telegram;
     public string|null $location;
+    public bool|null $status;
 
 
 
@@ -38,6 +40,7 @@ class LidsForm extends Model
         $this->password = $model->password;
         $this->telegram = $model->telegram;
         $this->location = $model->location;
+        $this->status = $model->status;
         parent::__construct($config);
     }
 
@@ -56,6 +59,9 @@ class LidsForm extends Model
         $model->parent_number = $this->parent_number;
         $model->parent_name = $this->parent_name;
         $model->gender = $this->gender;
+        if($model->isNewRecord){
+            $model->status = LidsEnums::WAITING;
+        }
         if ($this->password !== null) {
             $model->setPassword($this->password);
         }
@@ -78,5 +84,9 @@ class LidsForm extends Model
             [['full_name'], 'string', 'max' => 50],
         ];
     }
+
+
+
+
 
 }

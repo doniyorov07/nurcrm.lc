@@ -7,6 +7,7 @@ use common\models\Lids;
 use common\models\search\LidsSearch;
 use common\models\StudentGroup;
 use Yii;
+use yii\db\StaleObjectException;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -49,7 +50,7 @@ class StudentController extends Controller
     /**
      * @throws NotFoundHttpException
      */
-    public function actionView(int $id)
+    public function actionView(int $id): string
     {
         $model = $this->findModel($id);
 
@@ -60,6 +61,11 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * @throws \Throwable
+     * @throws StaleObjectException
+     * @throws NotFoundHttpException
+     */
     public function actionDelete(int $id)
     {
         $this->findModel($id)->delete();
@@ -67,6 +73,9 @@ class StudentController extends Controller
         return $this->redirect(['index']);
     }
 
+    /**
+     * @throws NotFoundHttpException
+     */
     public function actionCreate(int $id): array|string
     {
         $ids = $this->findModel($id);

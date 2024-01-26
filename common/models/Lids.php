@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\enums\LidsEnums;
 use Yii;
 use yii\base\Exception;
 
@@ -20,6 +21,7 @@ use yii\base\Exception;
  * @property string|null $location
  * @property string|null $created_at
  * @property string|null $updated_at
+ * @property bool|null $status
  */
 class Lids extends \yii\db\ActiveRecord
 {
@@ -76,6 +78,9 @@ class Lids extends \yii\db\ActiveRecord
         }
     }
 
-
+    public function getStatusLabel(): string
+    {
+        return LidsEnums::LABELS[$this->status] ?? 'Noma\'lum';
+    }
 
 }

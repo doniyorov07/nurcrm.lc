@@ -5,6 +5,8 @@
 /** @var Lids $model */
 /** @var Lids $groups */
 
+use common\enums\LidsEnums;
+use common\models\forms\LidsForm;
 use common\models\Lids;
 use yii\bootstrap4\Modal;
 use yii\helpers\Html;
@@ -275,12 +277,14 @@ use yii\widgets\Pjax;
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <p class="text-muted mb-0">Kunlar: <?= implode(' * ', json_decode($group->group->days)) ?> - <?= $group->group->hour?></p>
+                                                        <p class="text-muted mb-0">Kunlar: <?= implode(' * ', json_decode($group->group->days)) ?> - <?= $group->group->hour ?></p>
                                                     </div>
 
                                                     <hr>
                                                     <div class="mt-2">
-                                                        <p  class="text-muted mb-0">Holat: <span class="font-weight-bold text-dark"> 20.01.2024</span></p>
+                                                        <p  class="text-muted mb-0">Holat: <span class="font-weight-bold text-warning">
+                                                         <?= $group->lids->getStatusLabel() ?>
+                                                            </span></p>
                                                     </div>
                                                     <div class="mt-2">
                                                         <p  class="text-muted mb-0">Talaba qo'shilgan sana: <span class="font-weight-bold text-dark"> 20.01.2024</span></p>

@@ -20,7 +20,7 @@ interface LidsEnums
 
     public const LABELS = [
         self::WAITING => "Sinov darsida",
-        self::ACTIVE => "Guruhga qo\shilgan",
+        self::ACTIVE => "Faol(pul to'laydi)",
         self::INACTIVE => "Muzlatilgan",
         self::SUCCESS => "Tugatgan",
         self::MALE => "Erkak",

@@ -3,6 +3,7 @@
 
 namespace common\models;
 
+use common\enums\LidsEnums;
 use yii\helpers\ArrayHelper;
 
 class ModelToData

@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\enums\LidsEnums;
 use Yii;
 
 /**
@@ -70,4 +71,6 @@ class StudentGroup extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Lids::class, ['id' => 'lids_id']);
     }
+
+
 }
