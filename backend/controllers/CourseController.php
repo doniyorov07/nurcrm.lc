@@ -2,10 +2,8 @@
 
 namespace backend\controllers;
 
-use common\models\AuthItem;
 use common\models\Course;
-use common\models\search\Course as CourseSearch;
-use lavrentiev\widgets\toastr\NotificationFlash;
+use common\models\forms\CourseForm;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -38,14 +36,21 @@ class CourseController extends Controller
     /**
      * Lists all Course models.
      *
-     * @return string
+     * @return string|Response
      */
     public function actionIndex()
     {
-        $model = Course::find()->all();
+        $query = Course::find()->all();
+        $model = new Course();
+        $form = new CourseForm($model);
+
+        if ($form->load($this->request->post()) && $form->validate() && $form->save()) {
+            return $this->redirect(['course/index']);
+        }
 
         return $this->render('index', [
-            'model' => $model,
+            'query' => $query,
+            'model' => $form,
         ]);
     }
 
@@ -68,31 +73,11 @@ class CourseController extends Controller
      * @return array|string
      */
 
-    public function actionCreate()
-    {
-        $model = new Course();
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        if (Yii::$app->request->isAjax) {
-            $result['status'] = false;
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                $result['status'] = true;
-                Yii::$app->session->setFlash('success');
-            }
-            $result['content'] = $this->renderAjax('_form', ['model' => $model]);
-            return $result;
-        }
-
-        if (Yii::$app->request->isAjax) {
-            $result['content'] = $this->renderAjax('_form', ['model' => $model]);
-            return $result;
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
+      public function actionCreate()
+      {
+          $model = new Course();
+          return $this->form($model, 'update');
+      }
 
 
     /**
@@ -105,30 +90,21 @@ class CourseController extends Controller
     public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
-
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        if (Yii::$app->request->isAjax) {
-            $result['status'] = false;
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                $result['status'] = true;
-                Yii::$app->session->setFlash('success');
-            }
-            $result['content'] = $this->renderAjax('_form', ['model' => $model]);
-            return $result;
-        }
-
-        if (Yii::$app->request->isAjax) {
-            $result['content'] = $this->renderAjax('_form', ['model' => $model]);
-            return $result;
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->form($model, 'update');
     }
 
+
+    public function form(Course $model, $view)
+    {
+        $form = new CourseForm($model);
+        if ($form->load($this->request->post()) && $form->save()) {
+            Yii::$app->session->setFlash('success');
+            return $this->redirect(['course/index']);
+        }
+        return $this->renderAjax('_form', [
+            'model' => $form,
+        ]);
+    }
 
 
     /**

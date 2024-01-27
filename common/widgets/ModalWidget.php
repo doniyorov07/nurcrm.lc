@@ -1,10 +1,4 @@
 <?php
-/*
- *   Jamshidbek Akhlidinov
- *   29 - 12 2023 21:53:12
- *   https://ustadev.uz
- *   https://github.com/JamshidbekAkhlidinov
- */
 
 namespace common\widgets;
 
@@ -20,7 +14,7 @@ class ModalWidget extends Widget
 
     public $footer = '<button type="button" class="btn btn-primary ">Save Changes</button>';
 
-    public $url = '/admin/test/modal';
+    public $url = '/common/test/modal';
 
     public $options;
 
@@ -32,7 +26,7 @@ class ModalWidget extends Widget
         'data-bs-target' => '#jk_modal',
     ];
 
-    public string $closeButton = '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+    public string $closeButton = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
 
     public function init()
     {
@@ -90,7 +84,7 @@ class ModalWidget extends Widget
         );
         return Html::tag(
             $button['tag'] ?? 'button',
-            $button['label'] ?? "Open Modal",
+            $button['label'] ?? "<i class='fas fa-edit'></i>",
             $options
         );
     }

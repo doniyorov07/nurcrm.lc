@@ -1,11 +1,11 @@
 <?php
 
-use yii\bootstrap4\Modal;
+use common\components\buttons\CourseFormButton;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
 /** @var yii\web\View $this */
-/** @var common\models\Course $model */
+/** @var common\models\Course $query */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Courses';
@@ -19,15 +19,15 @@ $color = ['bg-success', 'bg-info', 'bg-warning', 'bg-danger', 'bg-primary', 'bg-
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Course', ['create'], ['class' => 'btn btn-success', 'id' => 'create-button']) ?>
+        <?= CourseFormButton::create() ?>
     </p>
 
-    <?php Pjax::begin(['id' => 'prl-pjax']); ?>
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <?php foreach ($model as $index => $item) :?>
-                    <?php  $colorClass = $color[$index % count($color)]; ?>
+                <?php foreach ($query as $index => $item) :?>
+                    <?php $colorClass = $color[$index % count($color)]; ?>
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box <?= $colorClass ?>">
@@ -35,7 +35,7 @@ $color = ['bg-success', 'bg-info', 'bg-warning', 'bg-danger', 'bg-primary', 'bg-
                                 <h3>10</h3>
                                 <div class="row">
                                     <p class="col-md-11"><?= $item->name ?></p>
-                                    <a style="color: white" href="<?=\yii\helpers\Url::to(['course/update', 'id' => $item->id])?>" class="update-edit "><span class="fas fa-edit fa-x"></span></a>
+                                     <?= CourseFormButton::update($item->id, $item->name); ?>
                                 </div>
                             </div>
                             <div class="icon">
@@ -48,15 +48,7 @@ $color = ['bg-success', 'bg-info', 'bg-warning', 'bg-danger', 'bg-primary', 'bg-
             </div>
         </div>
     </section>
-    <?php Pjax::end(); ?>
+
 
 </div>
-<?php
-Modal::begin([
-    'id' => 'myModal',
-]);
 
-echo "<div id='modalContent'> Content</div>";
-
-Modal::end();
-?>

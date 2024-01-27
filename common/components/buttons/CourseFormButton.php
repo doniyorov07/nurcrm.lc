@@ -1,48 +1,45 @@
 <?php
-/*
- *   Jamshidbek Akhlidinov
- *   30 - 12 2023 22:37:35
- *   https://ustadev.uz
- *   https://github.com/JamshidbekAkhlidinov
- */
 
-namespace common\models\components;
+
+namespace common\components\buttons;
 
 use common\widgets\ModalWidget;
 
 class CourseFormButton
 {
 
-    public static function create()
+    public static function create(): string
     {
         return ModalWidget::widget([
             'button' => [
                 'tag' => 'button',
                 'class' => 'btn btn-success',
-                'label' => icon('folder-add'),
+                'label' => 'Create',
             ],
-            'url' => ['post-category/create'],
+            'url' => ['course/create'],
             'footer' => '',
-            'header' => "<h2>" . 'Post Category Form' ."</h2>"
+            'header' => "<h2>" . 'Course' ."</h2>"
         ]);
     }
 
-    public static function update($id, $text)
+    /**
+     * @throws \Throwable
+     */
+    public static function update(int $id)
     {
         return ModalWidget::widget([
             'button' => [
                 'tag' => 'span',
                 'class' => '',
-                'label' => $text,
                 'options' => [
                     'style' => [
                         'cursor' => 'pointer'
                     ]
                 ]
             ],
-            'url' => ['post-category/update', 'id' => $id],
+            'url' => ['course/update', 'id' => $id],
             'footer' => '',
-            'header' => "<h2>" . 'Post Category Form' ."</h2>"
+            'header' => "<h2 style='color: black'>" . 'Course' ."</h2>"
         ]);
     }
 

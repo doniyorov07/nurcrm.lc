@@ -3,18 +3,19 @@
 namespace common\models\forms;
 
 
+use common\models\Course;
 use yii\base\Model;
 
 
 class CourseForm extends Model
 {
 
-    public CourseForm $model;
-    public $name;
-    public $status;
+    public Course $model;
+    public ?string $name;
+    public ?int $status;
 
 
-    public function __construct(CourseForm $model, $config = [])
+    public function __construct(Course $model, $config = [])
     {
         $this->model = $model;
         $this->name = $model->name;
