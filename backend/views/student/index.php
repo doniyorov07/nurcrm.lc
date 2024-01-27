@@ -1,5 +1,6 @@
 <?php
 
+use common\models\components\CourseFormButton;
 use common\models\Lids;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -17,9 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Lids', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?= CourseFormButton::create() ?>
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model'  => $searchModel]); ?>

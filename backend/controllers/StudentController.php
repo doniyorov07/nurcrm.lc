@@ -88,7 +88,6 @@ class StudentController extends Controller
             $result['status'] = false;
             if ($model->load(Yii::$app->request->post())) {
                 $isAssociationExists = false;
-
                 foreach ($studentgroups as $studentgroup) {
                     if ($model->lids_id == $studentgroup->lids_id && $model->group_id == $studentgroup->group_id) {
                         $isAssociationExists = true;
@@ -103,10 +102,8 @@ class StudentController extends Controller
                     $result['status'] = false;
                     $result['error'] = 'Talaba bu guruhga allaqachon biriktirilgan';
                 }
-
                 return $result;
             }
-
             $result['content'] = $this->renderAjax('_form', ['model' => $model]);
             return $result;
         }

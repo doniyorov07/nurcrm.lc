@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 
 <div class="lids-form">
 
-    <?php $form = ActiveForm::begin(['id' => 'form-id']); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'group_id')->dropDownList(
         ModelToData::getGroup(),
@@ -33,16 +33,10 @@ use yii\widgets\ActiveForm;
 
 
     <div class="form-group">
-        <?= Html::submitButton('Saqlash', ['class' => 'btn btn-success', 'id' => 'save']) ?>
+        <?= Html::submitButton('Saqlash', ['class' => 'btn btn-success']) ?>
     </div>
 
 
     <?php ActiveForm::end(); ?>
 
 </div>
-
-<?php if ($result['success']) : ?>
-    <div class="alert alert-danger">
-        <?= $result['error'] ?>
-    </div>
-<?php endif; ?>
