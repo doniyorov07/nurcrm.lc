@@ -1,6 +1,6 @@
 <?php
 
-use common\models\components\CourseFormButton;
+use common\components\buttons\CourseFormButton;
 use common\models\Lids;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -78,30 +78,30 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-<style>
-    .offcanvas-menu{
-        top: 50px;
-        right: 0;
-        z-index: 5;
-        transform: translateX(100%);
-        transition: all .4s ease;
-    }
-    .offcanvas-menu.active{
-        transform: translateX(0);
-    }
-    .card-body{
-        background-color: #f9fafa;
-    }
-
-    #telefon, #parenttelefone{
-        outline: 0;
-    }
-    #telefon:valid{
-        border-color: green;
-
-    }
-    #telefon:focus:invalid{
-        border-color: red;
-    }
-</style>
+<!--<style>-->
+<!--    .offcanvas-menu{-->
+<!--        top: 50px;-->
+<!--        right: 0;-->
+<!--        z-index: 5;-->
+<!--        transform: translateX(100%);-->
+<!--        transition: all .4s ease;-->
+<!--    }-->
+<!--    .offcanvas-menu.active{-->
+<!--        transform: translateX(0);-->
+<!--    }-->
+<!--    .card-body{-->
+<!--        background-color: #f9fafa;-->
+<!--    }-->
+<!---->
+<!--    #telefon, #parenttelefone{-->
+<!--        outline: 0;-->
+<!--    }-->
+<!--    #telefon:valid{-->
+<!--        border-color: green;-->
+<!---->
+<!--    }-->
+<!--    #telefon:focus:invalid{-->
+<!--        border-color: red;-->
+<!--    }-->
+<!--</style>-->
 
