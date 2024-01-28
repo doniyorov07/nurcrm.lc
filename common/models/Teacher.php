@@ -41,9 +41,10 @@ class Teacher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['number', 'gender', 'status'], 'integer'],
+            [['gender', 'status'], 'integer'],
             [['birth_day'], 'safe'],
             [['full_name'], 'string', 'max' => 50],
+            [['number'], 'string', 'max' => 30],
             [['password', 'created_at', 'updated_at'], 'string', 'max' => 255],
         ];
     }

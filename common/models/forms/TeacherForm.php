@@ -6,7 +6,6 @@ namespace common\models\forms;
 use common\models\Teacher;
 use yii\base\Exception;
 use yii\base\Model;
-use yii\behaviors\TimestampBehavior;
 
 class TeacherForm extends Model
 {
@@ -14,7 +13,7 @@ class TeacherForm extends Model
     public  Teacher $model;
 
     public ?string $full_name;
-    public ?int $number;
+    public ?string $number;
     public ?string $birth_day;
     public ?int $gender;
     public ?string $password;
@@ -64,9 +63,10 @@ class TeacherForm extends Model
     public function rules(): array
     {
         return [
-            [['number', 'gender', 'status'], 'integer'],
+            [['gender', 'status'], 'integer'],
             [['birth_day'], 'safe'],
             [['full_name'], 'string', 'max' => 50],
+            [['number'], 'string', 'max' => 30],
             [['password', 'created_at', 'updated_at'], 'string', 'max' => 255],
         ];
     }

@@ -102,6 +102,7 @@ class TeacherController extends Controller
     {
         $form = new TeacherForm($model);
         if ($form->load($this->request->post()) && $form->save()) {
+            \Yii::$app->session->setFlash('success');
             return $this->redirect(['teacher/index']);
         }
 
