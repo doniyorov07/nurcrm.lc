@@ -2,9 +2,10 @@
 
 
 
-/** @var Lids $model */
+/** @var Lids $models */
 /** @var Lids $groups */
 
+use common\components\buttons\StudentGroupButton;
 use common\enums\LidsEnums;
 use common\models\forms\LidsForm;
 use common\models\Lids;
@@ -43,7 +44,7 @@ use yii\widgets\Pjax;
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile ">
                         <div class="mt-2 profile-name">
-                            <h5 class="font-weight-bold mb-0"><?= $model->full_name?></h5>
+                            <h5 class="font-weight-bold mb-0"><?= $models->full_name?></h5>
                             <p class="text-muted">(id: 123456)</p>
                         </div>
                         <div>
@@ -52,22 +53,20 @@ use yii\widgets\Pjax;
                         </div>
                         <div class="mt-2">
                             <p  class="text-muted mb-0">Telefon:</p>
-                            <h6 class="font-weight-bold"><?= $model->number?> </h6>
-                            <p  class="text-muted mb-0">Ota - Onalar telefoni: <span class="font-weight-bold text-dark">- <?= $model->parent_name?> </span></p>
-                            <h6 class="font-weight-bold"><?= $model->parent_number?>  </h6>
+                            <h6 class="font-weight-bold"><?= $models->number?> </h6>
+                            <p  class="text-muted mb-0">Ota - Onalar telefoni: <span class="font-weight-bold text-dark">- <?= $models->parent_name?> </span></p>
+                            <h6 class="font-weight-bold"><?= $models->parent_number?>  </h6>
 
                         </div>
                         <hr>
                         <div class="mt-2">
-                            <p  class="text-muted mb-0">Talaba qo'shilgan sana: <span class="font-weight-bold text-dark"> <?= $model->created_at?> </span></p>
+                            <p  class="text-muted mb-0">Talaba qo'shilgan sana: <span class="font-weight-bold text-dark"> <?= $models->created_at?> </span></p>
                         </div>
 
                         <div class="mt-3 d-flex justify-content-between">
                             <div>
                                 <p>
-                                    <?= Html::a( '<i class=" fas fa-inbox mr-1" style="color: #58ace4;"></i>Guruhga qo\'shish', ['create', 'id' => $model->id],
-                                        ['class' => 'btn btn-outline-primary rounded-pill py-0 open-btn', 'id' => 'create-button', ])
-                                    ?>
+                                    <?= StudentGroupButton::create()?>
                                 </p>
                             </div>
 
@@ -218,7 +217,7 @@ use yii\widgets\Pjax;
 
                                     <?= Html::a(
                                         '<i class="far fa-trash-alt" style="color: #ff3b3b;"></i>',
-                                        ['student/delete', 'id' => $model->id],
+                                        ['student/delete', 'id' => $models->id],
                                         [
                                             'class' => 'btn btn-outline-danger rounded-circle px-2 py-1',
                                             'title' => 'Delete',
@@ -294,7 +293,7 @@ use yii\widgets\Pjax;
                                                     </div>
                                                     <div class="mt-2">
                                                         <p  class="text-muted mb-0">Talaba qo'shilgan sana: <span class="font-weight-bold text-dark">
-                                                                <?= Yii::$app->formatter->asDate($group->lids->created_at, 'php:d-m-Y') ?>
+<!--                                                                --><?php //= Yii::$app->formatter->asDate($group->lids->created_at, 'php:d-m-Y') ?>
 </span></p>
                                                     </div>
                                                     <div class="mt-2">

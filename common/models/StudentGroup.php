@@ -57,7 +57,7 @@ class StudentGroup extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getGroup()
+    public function getGroup(): \yii\db\ActiveQuery
     {
         return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
@@ -67,7 +67,7 @@ class StudentGroup extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getLids()
+    public function getLids(): \yii\db\ActiveQuery
     {
         return $this->hasOne(Lids::class, ['id' => 'lids_id']);
     }

@@ -42,6 +42,15 @@ $sideBarMenus = [
     ],
 
     [
+        'label' => Yii::t('app', 'Teacher'),
+        'icon' => 'fas fa-users',
+        'url' => Url::to(['/teacher']),
+        'active' => in_array($route, ['teacher/index', 'teacher/update', 'teacher/create', 'teacher/view']),
+        'isVisible' => true,
+        'items' => [],
+    ],
+
+    [
         'label' => Yii::t('app', 'Maruza'),
         'icon' => 'fas fa-chalkboard',
         'url' => '#',
