@@ -1,11 +1,7 @@
 <?php
 
 use common\components\buttons\GroupFormButton;
-use common\enums\DaysEnums;
-use common\models\Group;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
