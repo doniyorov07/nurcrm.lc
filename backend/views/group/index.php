@@ -1,5 +1,6 @@
 <?php
 
+use common\components\buttons\GroupFormButton;
 use common\enums\DaysEnums;
 use common\models\Group;
 use yii\helpers\Html;
@@ -19,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Group', ['create'], ['class' => 'btn btn-success']) ?>
+      <?= GroupFormButton::create()?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -31,8 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
-            'group_name',
+            [
+                    'attribute' => 'group_name',
+                    'format' => 'raw',
+                    'value' => function($model)
+                    {
+                        return Html::a($model->group_name, ['view', 'id' => $model->id]);
+                    }
+            ],
             [
                 'attribute' => 'course_id',
                 'value' => static function ($model) {
@@ -56,12 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'lesson_start',
             //'lesson_end',
             //'status',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Group $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
+
         ],
     ]); ?>
 

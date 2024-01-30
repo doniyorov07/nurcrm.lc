@@ -9,7 +9,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\Response;
+
 
 /**
  * GroupController implements the CRUD actions for Group model.
@@ -44,9 +44,13 @@ class GroupController extends Controller
         $searchModel = new GroupSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
+        $model = new Group();
+        $form = new GroupForm($model);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $form,
         ]);
     }
 
@@ -97,7 +101,7 @@ class GroupController extends Controller
         if ($formModel->load(Yii::$app->request->post()) && $formModel->save()) {
             return $this->redirect(['index']);
         }
-        return $this->render('_form', [
+        return $this->renderAjax('_form', [
             'model' => $formModel,
         ]);
     }

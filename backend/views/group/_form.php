@@ -18,61 +18,76 @@ use yii\widgets\ActiveForm;
 <div class="group-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'course_id')->dropDownList(
-        ModelToData::getCourse(),
-    )
-    ?>
-
-    <?= $form->field($model, 'group_name')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-md-6">
+            <?= $form->field($model, 'course_id')->dropDownList(
+                ModelToData::getCourse(),
+            )
+            ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'group_name')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
 
     <?= $form->field($model, 'days')->checkboxList(ModelToData::getDays()) ?>
 
 
-    <?= $form->field($model, 'hour')->dropDownList(
-        ModelToData::getHour(),
-    )
-    ?>
+    <div class="row">
+        <div class="col-md-6">
+            <?= $form->field($model, 'hour')->dropDownList(
+                ModelToData::getHour(),
+            )
+            ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'lesson_start')->widget(DatePicker::classname(), [
-        'name' => 'check_issue_date',
-        'options' => ['placeholder' => 'Darsni boshlanish sanasi...'],
-        'pluginOptions' => [
-            'format' => 'yyyy-mm-dd',
-            'todayHighlight' => true,
-            'autoclose' => true,
-        ],
-    ]);
-    ?>
 
-    <?= $form->field($model, 'lesson_end')->widget(DatePicker::classname(), [
-        'name' => 'check_issue_date',
-        'options' => ['placeholder' => 'Darsni tugash sanasi...'],
-        'pluginOptions' => [
-            'format' => 'yyyy-mm-dd',
-            'todayHighlight' => true,
-            'autoclose' => true,
-        ],
-    ]);
-    ?>
+    <div class="row">
+        <div class="col-md-6">
 
-    <?= $form->field($model, 'status')->widget(Select2::classname(), [
-        'name' => 'status',
-        'hideSearch' => true,
-        'data' => [
-            GroupStatusEnums::WAITING => 'Guruh yig\'ilyapti',
-            GroupStatusEnums::ACTIVE => "Guruh faol",
-            GroupStatusEnums::INACTIVE => "Guruh yopilgan",
-        ],
-        'options' => ['placeholder' => 'Darsni kunini tanlang...'],
-        'pluginOptions' => [
-            'allowClear' => true
-        ]
-    ])
-    ?>
+            <?= $form->field($model, 'lesson_start')->widget(DatePicker::classname(), [
+                'name' => 'check_issue_date',
+                'options' => ['placeholder' => 'Darsni boshlanish sanasi...'],
+                'pluginOptions' => [
+                    'format' => 'yyyy-mm-dd',
+                    'todayHighlight' => true,
+                    'autoclose' => true,
+                ],
+            ]);
+            ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'lesson_end')->widget(DatePicker::classname(), [
+                'name' => 'check_issue_date',
+                'options' => ['placeholder' => 'Darsni tugash sanasi...'],
+                'pluginOptions' => [
+                    'format' => 'yyyy-mm-dd',
+                    'todayHighlight' => true,
+                    'autoclose' => true,
+                ],
+            ]);
+            ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'status')->widget(Select2::classname(), [
+                'name' => 'status',
+                'hideSearch' => true,
+                'data' => GroupStatusEnums::LABELS,
+                'options' => ['placeholder' => 'Guruh holatini tanlang'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ]
+            ])
+            ?>
+
+
+
 
 
     <div class="form-group">

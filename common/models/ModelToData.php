@@ -42,6 +42,15 @@ class ModelToData
             ];
         }
 
+        public static function getTeacher()
+        {
+            return ArrayHelper::map(
+                Teacher::find()->all(),
+                'id',
+                'name',
+            );
+        }
+
 
 
 
