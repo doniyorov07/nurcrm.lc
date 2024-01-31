@@ -50,35 +50,7 @@ $sideBarMenus = [
         'items' => [],
     ],
 
-    [
-        'label' => Yii::t('app', 'Maruza'),
-        'icon' => 'fas fa-chalkboard',
-        'url' => '#',
-        'isVisible' => true,
-        'active' => in_array($route, [
-            'theory/index', 'theory/view', 'theory/update', 'theory/create', 'theory/delete',
-            'task-question/index', 'task-question/view', 'task-question/update', 'task-question/create', 'task-question/delete',
 
-        ]),
-        'items' => [
-            [
-                'label' => Yii::t('app', 'Nazariya'),
-                'icon' => 'far fa-dot-circle nav-icon',
-                'url' => Url::to(['/theory']),
-                'isVisible' => true,
-                'active' => in_array($route, ['theory/index', 'theory/view', 'theory/update', 'theory/create', 'theory/delete']),
-                'items' => [],
-            ],
-            [
-                'label' => Yii::t('app', 'Savol va Top'),
-                'icon' => 'far fa-dot-circle nav-icon',
-                'url' => Url::to(['/task-question']),
-                'isVisible' => true,
-                'active' => in_array($route, ['task-question/index', 'task-question/view', 'task-question/update', 'task-question/create', 'task-question/delete']),
-                'items' => []
-            ],
-        ]
-    ],
 
     [
         'label' => Yii::t('app', 'Rbac'),
@@ -111,13 +83,14 @@ $sideBarMenus = [
     ],
 
     [
-        'label' => Yii::t('app', 'Couse'),
+        'label' => Yii::t('app', 'Course vs Group'),
         'icon' => 'fas fa-chalkboard',
         'url' => '#',
         'isVisible' => true,
         'active' => in_array($route, [
-            'auth-item/index', 'auth-item/view', 'auth-item/update', 'auth-item/create', 'auth-item/delete',
-            'auth-assigment/index', 'auth-assigment/view', 'auth-assigment/update', 'auth-assigment/create', 'auth-assigment/delete',
+           'course/index', 'course/view', 'course/update', 'course/create', 'course/delete',
+            'group/index', 'group/view', 'group/update', 'group/create', 'group/delete',
+            'teacher-group/index', 'teacher-group/view', 'teacher-group/update', 'teacher-group/create', 'teacher-group/delete',
 
         ]),
         'items' => [
@@ -135,6 +108,14 @@ $sideBarMenus = [
                 'url' => Url::to(['/group']),
                 'isVisible' => true,
                 'active' => in_array($route, ['group/index', 'group/view', 'group/update', 'group/create', 'group/delete']),
+                'items' => []
+            ],
+            [
+                'label' => Yii::t('app', 'Teacher Group'),
+                'icon' => 'far fa-dot-circle nav-icon',
+                'url' => Url::to(['/teacher-group']),
+                'isVisible' => true,
+                'active' => in_array($route, ['teacher-group/index', 'teacher-group/view', 'teacher-group/update', 'teacher-group/create', 'teacher-group/delete']),
                 'items' => []
             ],
         ]

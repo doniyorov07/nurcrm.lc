@@ -58,7 +58,7 @@ class TeacherGroup extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getGroup()
+    public function getGroup(): \yii\db\ActiveQuery
     {
         return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
@@ -68,7 +68,7 @@ class TeacherGroup extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTeacher()
+    public function getTeacher(): \yii\db\ActiveQuery
     {
         return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
     }
