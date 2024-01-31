@@ -47,7 +47,7 @@ class ModelToData
             return ArrayHelper::map(
                 Teacher::find()->all(),
                 'id',
-                'name',
+                'full_name',
             );
         }
 

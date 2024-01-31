@@ -1,7 +1,7 @@
 <?php
 
-use common\components\buttons\TeacherFormButton;
-use common\models\Teacher;
+use common\components\buttons\TeacherGroupButton;
+use common\models\TeacherGroup;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= TeacherFormButton::create() ?>
+        <?= TeacherGroupButton::create() ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,36 +30,42 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-//            [
-//                'attribute' => 'full_name',
-//                'format' => 'raw',
-//                'value' => function($model)
-//                {
-//                    return Html::a($model->full_name, ['view', 'id' => $model->id]);
-//                }
-//            ],
+            //'id',
+            [
+                'attribute' => 'teacher_id',
+                'format' => 'raw',
+                'value' => function($model)
+                {
+                    return $model->teacher->full_name;
+                }
+            ],
+            [
+                'attribute' => 'group_id',
+                'format' => 'raw',
+                'value' => function($model)
+                {
+                    $decoded = json_decode($model->group->days, true);
+                    $daysString = is_array($decoded) ? implode(', ', $decoded) : '';
+                    return '<i class="badge badge-danger "> ' . $model->group->group_name . '</i> <i class="badge badge-warning">' . $daysString . ' </i> <i class="badge badge-primary">' . $model->group->hour . '</i>';
+                }
+            ],
 
 
-            //'birth_day',
-            //'gender',
-            //'password',
-            //'status',
-//            [
-//                'class' => ActionColumn::className(),
-//                'template' => '{update}',
-//                'urlCreator' => function ($action, Teacher $model, $key, $index, $column) {
-//                    if ($action === 'update') {
-//                        return Url::toRoute(['teacher/update', 'id' => $model->id]);
-//                    }
-//                    return Url::toRoute([$action, 'id' => $model->id]);
-//                },
-//                'buttons' => [
-//                    'update' => function ($url, $model, $key) {
-//                        return TeacherFormButton::update($model->id);
-//                    },
-//                ],
-//            ],
+            [
+                'class' => ActionColumn::className(),
+                'template' => '{update}',
+                'urlCreator' => function ($action, TeacherGroup $model, $key, $index, $column) {
+                    if ($action === 'update') {
+                        return Url::toRoute(['teacher-group/update', 'id' => $model->id]);
+                    }
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                },
+                'buttons' => [
+                    'update' => function ($url, $model, $key) {
+                        return TeacherGroupButton::update($model->id);
+                    },
+                ],
+            ],
         ],
     ]); ?>
 
