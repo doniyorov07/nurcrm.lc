@@ -42,6 +42,31 @@ class TeacherGroupForm extends Model
     }
 
 
+    public function init(): bool
+    {
+        $teacherGroup = TeacherGroup::findOne(['group_id' => $this->group_id]);
+
+        if ($teacherGroup === null) {
+            return true;
+        }
+
+        $hour = Group::findOne(['group_id' => $this->group_id])->hour;
+
+        if ($hour === null) {
+            return true;
+        }
+
+        $otherGroups = Group::find()->where(['hour' => $hour])->andWhere(['!=', 'id', $this->group_id])->all();
+
+        foreach ($otherGroups as $otherGroup) {
+            $otherTeacher = TeacherGroup::findOne(['group_id' => $otherGroup->id]);
+            if ($otherTeacher !== null && ($otherTeacher->teacher_id === $this->teacher_id || $otherTeacher->teacher_id === $teacherGroup->teacher_id)) {
+                return false;
+            }
+        }
+        return true;
+
+    }
 
     public function rules()
     {
