@@ -73,4 +73,5 @@ class TeacherGroup extends \yii\db\ActiveRecord
         return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
     }
 
+
 }

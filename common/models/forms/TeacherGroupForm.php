@@ -3,7 +3,6 @@
 namespace common\models\forms;
 
 use common\models\Group;
-use common\models\ModelToData;
 use common\models\Teacher;
 use common\models\TeacherGroup;
 use yii\base\Exception;
@@ -38,11 +37,14 @@ class TeacherGroupForm extends Model
             $model->created_teacher_at = date('Y-m-d H:i:s');
         }
         $model->updated_teacher_at = date('Y-m-d H:i:s');
+        if (!$this->initCheck()) {
+            return false;
+        }
         return $model->save(false);
     }
 
 
-    public function init(): bool
+    public function initCheck(): bool
     {
         $teacherGroup = TeacherGroup::findOne(['group_id' => $this->group_id]);
 
@@ -52,21 +54,27 @@ class TeacherGroupForm extends Model
 
         $hour = Group::findOne(['group_id' => $this->group_id])->hour;
 
-        if ($hour === null) {
-            return true;
-        }
-
-        $otherGroups = Group::find()->where(['hour' => $hour])->andWhere(['!=', 'id', $this->group_id])->all();
+        $otherGroups = Group::find()
+            ->andWhere(['!=', 'id', $this->group_id])
+            ->all();
 
         foreach ($otherGroups as $otherGroup) {
-            $otherTeacher = TeacherGroup::findOne(['group_id' => $otherGroup->id]);
-            if ($otherTeacher !== null && ($otherTeacher->teacher_id === $this->teacher_id || $otherTeacher->teacher_id === $teacherGroup->teacher_id)) {
-                return false;
+            $otherHour = $otherGroup->hour;
+
+            if ($hour) {
+                $otherTeacher = TeacherGroup::findOne(['group_id' => $otherGroup->id]);
+
+                if ($otherTeacher !== null && ($otherTeacher->teacher_id === $this->teacher_id || $otherTeacher->teacher_id === $teacherGroup->teacher_id) && $hour === $otherHour) {
+                    return false;
+                }
             }
         }
-        return true;
 
+        return true;
     }
+
+
+
 
     public function rules()
     {
@@ -77,4 +85,6 @@ class TeacherGroupForm extends Model
             [['teacher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::class, 'targetAttribute' => ['teacher_id' => 'id']],
         ];
     }
+
+
 }
