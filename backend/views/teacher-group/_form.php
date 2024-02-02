@@ -26,24 +26,24 @@ use yii\widgets\ActiveForm;
         <?= Html::submitButton('Save', [
             'class' => 'btn btn-success',
             'onclick' => new JsExpression('
-        $.ajax({
-            type: "POST",
-            url: $(this).closest("form").attr("action"),
-            data: $(this).closest("form").serialize(),
-            success: function(data) {
-                if (data && data.success) {
-                    location.reload(); 
-                } else {
-                    var errorMessage = data && data.error ? data.error : "Guruhni o\'qituvchiga biriktirib bo\'lmaydi .";
-                    alert(errorMessage);
-                }
-            },
-        });
-        return false;
-    ')
+            $.ajax({
+                type: "POST",
+                url: $(this).closest("form").attr("action"),
+                data: $(this).closest("form").serialize(),
+                success: function(data) {
+                    if (data && data.success) {
+                        location.reload();
+                    } else {
+                        var errorMessage = data && data.error ? data.error : "Guruhni o\'qituvchiga biriktirib bo\'lmaydi.";
+                        alert(errorMessage);
+                    }
+                },
+            });
+            return false;
+        ')
         ]) ?>
-
     </div>
+
 
     <?php ActiveForm::end(); ?>
 

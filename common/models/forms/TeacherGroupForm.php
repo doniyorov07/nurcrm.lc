@@ -51,7 +51,6 @@ class TeacherGroupForm extends Model
         if ($teacherGroup === null) {
             return true;
         }
-
         $hour = Group::findOne(['group_id' => $this->group_id])->hour;
 
         $otherGroups = Group::find()
@@ -61,10 +60,11 @@ class TeacherGroupForm extends Model
         foreach ($otherGroups as $otherGroup) {
             $otherHour = $otherGroup->hour;
 
-            if ($hour) {
-                $otherTeacher = TeacherGroup::findOne(['group_id' => $otherGroup->id]);
+            if ($hour === $otherHour) {
+                $otherTeacher = TeacherGroup::findOne(['group_id' => $otherGroup->group_id]);
 
-                if ($otherTeacher !== null && ($otherTeacher->teacher_id === $this->teacher_id || $otherTeacher->teacher_id === $teacherGroup->teacher_id) && $hour === $otherHour) {
+                if ($otherTeacher !== null && ($otherTeacher->teacher_id === $this->teacher_id || $otherTeacher->teacher_id === $teacherGroup->teacher_id)) {
+                    $this->alert("Guruhni o'qituvchiga biriktirib bo'lmaydi.");
                     return false;
                 }
             }
@@ -72,7 +72,6 @@ class TeacherGroupForm extends Model
 
         return true;
     }
-
 
 
 
@@ -84,6 +83,11 @@ class TeacherGroupForm extends Model
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::class, 'targetAttribute' => ['group_id' => 'id']],
             [['teacher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::class, 'targetAttribute' => ['teacher_id' => 'id']],
         ];
+    }
+
+    private function alert(string $message): void
+    {
+        echo "<script>alert('Guruhni o\'qituvchiga biriktirib bo\'lmaydi.');</script>";
     }
 
 

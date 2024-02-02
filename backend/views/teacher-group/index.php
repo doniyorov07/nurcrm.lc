@@ -1,6 +1,7 @@
 <?php
 
 use common\components\buttons\TeacherGroupButton;
+use common\models\Group;
 use common\models\TeacherGroup;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -13,6 +14,8 @@ use yii\grid\GridView;
 
 $this->title = 'Teacher Group';
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 <div class="teacher-index">
 
