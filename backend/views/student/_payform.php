@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
     )
     ?>
 
-       <?= $form->field($model, 'group_created_at')->widget(DatePicker::classname(), [
+    <?= $form->field($model, 'group_created_at')->widget(DatePicker::classname(), [
         'name' => 'check_issue_date',
         'options' => ['placeholder' => 'Guruhga qo\'shilgan sana'],
         'pluginOptions' => [
@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
             'todayHighlight' => true,
         ],
     ]);
-      ?>
+    ?>
 
 
     <div class="form-group">

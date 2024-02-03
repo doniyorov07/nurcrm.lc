@@ -5,6 +5,7 @@
 /** @var Lids $models */
 /** @var Lids $groups */
 
+use common\components\buttons\PaymentFormButton;
 use common\components\buttons\StudentGroupButton;
 use common\enums\LidsEnums;
 use common\models\forms\LidsForm;
@@ -82,126 +83,17 @@ use yii\widgets\Pjax;
                                                 </button>
                                             </div>
                                         </div>
-                                        <!--                                            <div class="card-body p-3 pt-4">-->
-                                        <!--                                                <form >-->
-                                        <!--                                                    <label for="telefon" class="font-weight-normal">Telefon</label>-->
-                                        <!--                                                    <div class="input-group mb-3">-->
-                                        <!---->
-                                        <!--                                                        <div class="input-group-prepend">-->
-                                        <!--                                                            <span class="input-group-text" id="basic-addon1">+9989</span>-->
-                                        <!--                                                        </div>-->
-                                        <!--                                                        <input type="tel" class="form-control" placeholder="99-123-45-67" name="telefon" id="telefon" required pattern="[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}" onkeypress="return onlynum(event)" >-->
-                                        <!--                                                    </div>-->
-                                        <!--                                                    <div class="form-group">-->
-                                        <!--                                                        <label for="inputName" class="font-weight-normal">Ism</label>-->
-                                        <!--                                                        <input type="text" id="inputName" class="form-control" name="inputName" />-->
-                                        <!--                                                    </div>-->
-                                        <!--                                                    <div class="form-group">-->
-                                        <!--                                                        <label for="tsana" class="font-weight-normal">Tug'ilgan sana</label>-->
-                                        <!--                                                        <input type="date" id="tsana" name="tsana" class="form-control" placeholder="Tug'ilgan kunigiz" />-->
-                                        <!--                                                    </div>-->
-                                        <!--                                                    <div class="custom-control custom-radio custom-control-inline pt-3">-->
-                                        <!--                                                        <input type="radio" id="male" name="gender" class="custom-control-input">-->
-                                        <!--                                                        <label class="custom-control-label font-weight-normal" for="male">Erkak</label>-->
-                                        <!--                                                    </div>-->
-                                        <!--                                                    <div class="custom-control custom-radio custom-control-inline">-->
-                                        <!--                                                        <input type="radio" id="female" name="gender" class="custom-control-input">-->
-                                        <!--                                                        <label class="custom-control-label font-weight-normal" for="female">Ayol</label>-->
-                                        <!--                                                    </div>-->
-                                        <!--                                                    <p class="pt-4">Qo'shimcha aloqa</p>-->
-                                        <!--                                                    <label for="parenttelefon" class="font-weight-normal">Ota-Onasining telifoni</label>-->
-                                        <!--                                                    <div class="input-group mb-3">-->
-                                        <!--                                                        <div class="input-group-prepend">-->
-                                        <!--                                                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>-->
-                                        <!--                                                        </div>-->
-                                        <!--                                                        <input type="text" class="form-control" placeholder="99-123-45-67" onkeypress="return onlynum(event)">-->
-                                        <!--                                                        <div class="input-group-append">-->
-                                        <!--                                                            <button class="btn btn-outline-secondary" type="button" id="parenttelefon" name="parenttelefon" ><i class="fas fa-times"></i></button>-->
-                                        <!--                                                        </div>-->
-                                        <!--                                                    </div>-->
-                                        <!--                                                    <div class="mt-5 " >-->
-                                        <!--                                                        <div class="d-flex justify-content-center">-->
-                                        <!--                                                            <div class="p-1">-->
-                                        <!--                                                                <button type="button" class="btn btn-outline-warning rounded-circle px-2 py-1 "><i class=" fas fa-phone-alt" style="color: #FFD43B;"></i></button>-->
-                                        <!--                                                            </div>-->
-                                        <!--                                                            <div class="p-1">-->
-                                        <!--                                                                <button type="button" class="btn btn-outline-warning rounded-circle px-2 py-1 "><i class=" fas fa-key" style="color: #FFD43B;"></i></button>-->
-                                        <!--                                                            </div>-->
-                                        <!--                                                            <div class="p-1">-->
-                                        <!--                                                                <button type="button" class="btn btn-outline-warning rounded-circle px-2 py-1 "><i class=" far fa-envelope" style="color: #FFD43B;"></i></button>-->
-                                        <!--                                                            </div>-->
-                                        <!--                                                            <div class="p-1">-->
-                                        <!--                                                                <button type="button" class="btn btn-outline-warning rounded-circle px-2 py-1 "><i class=" fab fa-telegram-plane" style="color: #FFD43B;"></i></button>-->
-                                        <!--                                                            </div>-->
-                                        <!--                                                            <div class="p-1">-->
-                                        <!--                                                                <button type="button" class="btn btn-outline-warning rounded-circle px-2 py-1 "><i class=" fa fa-map-marker-alt" style="color: #FFD43B;"></i></button>-->
-                                        <!--                                                            </div>-->
-                                        <!--                                                            <div class="p-1">-->
-                                        <!--                                                                <button type="button" class="btn btn-outline-warning rounded-circle px-2 py-1 "><i class=" far fa-trash-alt" style="color: #FFD43B;"></i></button>-->
-                                        <!--                                                            </div>-->
-                                        <!--                                                            <div class="p-1">-->
-                                        <!--                                                                <button type="button" class="btn btn-outline-warning rounded-circle px-2 py-1 "><i class=" far fa-envelope" style="color: #FFD43B;"></i></button>-->
-                                        <!--                                                            </div>-->
-                                        <!--                                                            <div class="p-1">-->
-                                        <!--                                                                <button type="button" class="btn btn-outline-warning rounded-circle px-2 py-1 "><i class=" far fa-trash-alt" style="color: #FFD43B;"></i></button>-->
-                                        <!--                                                            </div>-->
-                                        <!--                                                        </div>-->
-                                        <!--                                                    </div>-->
-                                        <!--                                                    <div class="form-group pt-4" >-->
-                                        <!--                                                        <label for="inputTag" class="font-weight-normal">Teglar</label>-->
-                                        <!--                                                        <input type="text" id="inputTag" class="form-control" name="inputTag" placeholder="Tag qo'shish"/>-->
-                                        <!--                                                    </div>-->
-                                        <!--                                                    <div class="pt-4 d-flex justify-content-end">-->
-                                        <!--                                                        <button type="button" class="border-0 text-end ">+ parol qo'shish</button>-->
-                                        <!--                                                    </div>-->
-                                        <!---->
-                                        <!--                                                    <div class="form-group pt-5 ">-->
-                                        <!--                                                        <input type="submit" class="btn btn-primary" value="Send message">-->
-                                        <!--                                                    </div>-->
-                                        <!--                                                    <script>-->
-                                        <!--                                                        const openBtn = document.querySelector(".open-btn")-->
-                                        <!--                                                        const closeBtn = document.querySelector(".close-btn")-->
-                                        <!--                                                        const offcanvasMenu = document.querySelector(".offcanvas-menu")-->
-                                        <!---->
-                                        <!--                                                        openBtn.addEventListener('click', function(e){-->
-                                        <!--                                                            e.preventDefault();-->
-                                        <!--                                                            offcanvasMenu.classList.add('active');-->
-                                        <!---->
-                                        <!--                                                        });-->
-                                        <!---->
-                                        <!--                                                        closeBtn.addEventListener('click', function(e){-->
-                                        <!--                                                            e.preventDefault();-->
-                                        <!--                                                            offcanvasMenu.classList.remove('active');-->
-                                        <!---->
-                                        <!--                                                        });-->
-                                        <!--                                                    </script>-->
-                                        <!--                                                    <script type="text/javascript">-->
-                                        <!--                                                        function onlynum(e){-->
-                                        <!--                                                            let x = e.which || e.keycode;-->
-                                        <!--                                                            if((x >= 48 && x <=57))-->
-                                        <!--                                                                return true-->
-                                        <!--                                                            else-->
-                                        <!--                                                                return false-->
-                                        <!--                                                        }-->
-                                        <!--                                                    </script>-->
-                                        <!--                                                </form>-->
-                                        <!--                                            </div>-->
-                                        <!-- /.card-body -->
                                     </div>
                                     <!-- /.card -->
 
                                 </section>
                             </div>
                             <div class="btn-group ">
-                                <button type="button" class="btn btn-outline-success py-0 "><i class=" fas  fa-money-bill-alt mr-1" style="color: #68e458;"></i>To'lov</button>
-                                <button type="button" class="btn btn-success dropdown-toggle  py-0" data-toggle="dropdown" aria-expanded="false" >
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
+                                <?= PaymentFormButton::create()?>
+                                <button type="button" class="btn btn-success dropdown-toggle  py-0" data-toggle="dropdown" aria-expanded="false" ></button>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item text-danger" href="#"><i class=" fas  fa-upload mr-1" style="color: #fc6d34;"></i>To'lovni qaytarish</a>
                                     <a class="dropdown-item text-danger" href="#"><i class=" fas  fa-sign-out-alt mr-1" style="color: #fc6d34;"></i>Hisobdan chiqarish</a>
-
-
                                 </div>
                             </div>
                         </div>

@@ -15,15 +15,6 @@ $isSuperAdmin = Yii::$app->user->can('user');
 $sideBarMenus = [
 
     [
-        'label' => Yii::t('app', 'Practice'),
-        'icon' => 'fas fa-cogs',
-        'url' => Url::to(['/practice']),
-        'active' => in_array($route, ['practice/index', 'practice/update', 'practice/create', 'practice/view']),
-        'isVisible' => true,
-        'items' => [],
-    ],
-
-    [
         'label' => Yii::t('app', 'Lids'),
         'icon' => 'fas fa-cogs',
         'url' => Url::to(['/lids']),
@@ -121,14 +112,6 @@ $sideBarMenus = [
         ]
     ],
 
-    [
-        'label' => Yii::t('app', 'Data'),
-        'icon' => 'fas fa-database',
-        'url' => Url::to(['/data']),
-        'active' => in_array($route, ['data/index', 'data/view', 'data/update', 'data/create', 'data/delete']),
-        'isVisible' => true,
-        'items' => [],
-    ],
 
     [
         'label' => Yii::t('app', 'Sozlamalar'),

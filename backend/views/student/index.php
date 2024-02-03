@@ -1,9 +1,8 @@
 <?php
 
-use common\components\buttons\CourseFormButton;
-use common\models\Lids;
+
+use common\components\buttons\StudentFormButton;
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -18,9 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= CourseFormButton::create() ?>
+<!--    --><?php //= StudentFormButton::create() ?>
 
-    <?php Pjax::begin(); ?>
+
     <?php // echo $this->render('_search', ['model'  => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -68,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-    <?php Pjax::end(); ?>
+
 
 </div>
 

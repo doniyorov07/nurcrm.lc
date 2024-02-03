@@ -3,9 +3,11 @@
 namespace backend\controllers;
 
 use common\models\AuthItem;
+use common\models\forms\PaymentForm;
 use common\models\forms\StudentGroupForm;
 use common\models\forms\TeacherForm;
 use common\models\Lids;
+use common\models\Payment;
 use common\models\search\LidsSearch;
 use common\models\StudentGroup;
 use common\models\Teacher;
@@ -66,6 +68,13 @@ class StudentController extends Controller
             return $this->redirect(['student/view', 'id' => $models->id]);
         }
 
+        $payment = new Payment();
+        $payform= new PaymentForm($payment);
+
+        if ($form->load($this->request->post()) && $form->validate() && $form->save()) {
+            return $this->redirect(['student/view', 'id' => $models->id]);
+        }
+
         return $this->render('view', [
             'model' => $model,
             'models' => $models,
@@ -88,6 +97,12 @@ class StudentController extends Controller
     /**
      * @throws NotFoundHttpException
      */
+
+    public function actionPayment()
+    {
+        $model = new Payment();
+        return $this->form($model, 'payupdate');
+    }
 
     public function actionCreate()
     {
