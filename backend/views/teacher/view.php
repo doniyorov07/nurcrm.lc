@@ -4,8 +4,10 @@
 
 /** @var Teacher $model */
 /** @var Teacher $groups */
+/** @var TeacherGroup $teachergroups */
 
 use common\models\Teacher;
+use common\models\TeacherGroup;
 use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 
@@ -94,62 +96,32 @@ use yii\helpers\Html;
                         <div class="tab-content">
                             <div class="active tab-pane" id="activity">
                                 <div class="row">
-<!--                                    --><?php //foreach ($groups as $group) :?>
-<!--                                        <div class="col-md-6">-->
-<!--                                            <div class="card card-primary card-outline ">-->
-<!--                                                <div class="card-body box-profile p-4">-->
-<!--                                                    <div class=" row">-->
-<!--                                                        <div class=" col-8">-->
-<!--                                                            <p class="rounded-pill bg-secondary d-inline-block px-3 mb-0">--><?php //=$group->group->group_name ?><!--</p>-->
-<!--                                                        </div>-->
-<!--                                                        <div class=" col-4">-->
-<!--                                                            <p  class="text-muted mb-0">--><?php //= $group->group->lesson_start?><!-- --    </p>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                    <div class=" row">-->
-<!--                                                        <div class=" col-8">-->
-<!--                                                            <p  class="text-muted mb-0">--><?php //=$group->group->course->name ?><!--</p>-->
-<!--                                                        </div>-->
-<!--                                                        <div class=" col-4">-->
-<!--                                                            <p  class="text-muted mb-0">--><?php //= $group->group->lesson_end?><!--</p>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                    <div class=" row">-->
-<!--                                                        <div class=" col-8">-->
-<!--                                                            <p  class="text-muted mb-0">Teacher:</p>-->
-<!--                                                        </div>-->
-<!---->
-<!--                                                    </div>-->
-<!---->
-<!--                                                    <div class="col-12">-->
-<!--                                                        <p class="text-muted mb-0">Kunlar: --><?php //= implode(' * ', json_decode($group->group->days)) ?><!-- - --><?php //= $group->group->hour ?><!--</p>-->
-<!--                                                    </div>-->
-<!---->
-<!--                                                    <hr>-->
-<!--                                                    <div class="mt-2">-->
-<!--                                                        <p  class="text-muted mb-0">Holat: <span class="font-weight-bold text-warning">-->
-<!--                                                         --><?php
-//                                                         if ($group->lids !== null) {
-//                                                             echo $group->lids->getStatusLabel();
-//                                                         } else {
-//                                                             echo 'Null';
-//                                                         }
-//                                                         ?>
-<!--                                                            </span></p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="mt-2">-->
-<!--                                                        <p  class="text-muted mb-0">Talaba qo'shilgan sana: <span class="font-weight-bold text-dark">-->
-<!--                                                                --><?php //= Yii::$app->formatter->asDate($group->lids->created_at, 'php:d-m-Y') ?>
-<!--</span></p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="mt-2">-->
-<!--                                                        <p  class="text-muted mb-0">Bu talaba uchun narx <span class="font-weight-bold text-dark">--><?php //= $group->group->price?><!--</span></p>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                                <!-- /.card-body -->-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    --><?php // endforeach;?>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Guruh nomi</th>
+                                            <th scope="col">Dars kunlari</th>
+                                            <th scope="col">Dars vaqti</th>
+                                            <th scope="col">Dars boshlangan sana</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach ($teachergroups as $teachergroup) :?>
+                                        <tr>
+                                            <td><?= $teachergroup->group->group_name?></td>
+                                            <td>
+                                                <?php
+                                                $decoded = json_decode($teachergroup->group->days, true);
+                                                $daysString = is_array($decoded) ? implode(', ', $decoded) : '';
+                                                echo $daysString;
+                                                ?>
+                                            </td>
+                                            <td><?= $teachergroup->group->hour?></td>
+                                            <td><?= $teachergroup->group->lesson_start?></td>
+                                        </tr>
+                                        <?php endforeach;?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <!-- /.tab-pane -->

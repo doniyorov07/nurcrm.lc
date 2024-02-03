@@ -56,10 +56,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => ActionColumn::className(),
-                'template' => '{update}',
+                'template' => '{update} &nbsp {delete}',
                 'urlCreator' => function ($action, TeacherGroup $model, $key, $index, $column) {
                     if ($action === 'update') {
                         return Url::toRoute(['teacher-group/update', 'id' => $model->id]);
+                    } elseif ($action === 'delete') {
+                        return Url::toRoute(['teacher-group/delete', 'id' => $model->id]);
                     }
                     return Url::toRoute([$action, 'id' => $model->id]);
                 },
@@ -69,6 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                 ],
             ],
+
         ],
     ]); ?>
 

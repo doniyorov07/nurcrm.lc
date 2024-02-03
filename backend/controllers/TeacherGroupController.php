@@ -59,6 +59,13 @@ class TeacherGroupController extends Controller
         ]);
     }
 
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
     protected function findModel($id)
     {
         if (($model = TeacherGroup::findOne(['id' => $id])) !== null) {

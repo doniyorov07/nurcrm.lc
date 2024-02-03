@@ -7,6 +7,7 @@ use app\modules\admin\modules\content\models\PostCategory;
 use common\models\forms\TeacherForm;
 use common\models\Teacher;
 use common\models\search\TeacherSearch;
+use common\models\TeacherGroup;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -66,8 +67,10 @@ class TeacherController extends Controller
      */
     public function actionView($id)
     {
+        $teachergroups = TeacherGroup::find()->where(['teacher_id' => $id])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'teachergroups' => $teachergroups
         ]);
     }
 
