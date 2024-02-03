@@ -25,7 +25,8 @@
         "wokster/yii2-translation-manager": "v1.1@dev",
         "lavrentiev/yii2-toastr": "^2.0",
         "kartik-v/yii2-widget-select2": "dev-master",
-        "yiisoft/yii2-bootstrap4": "^2.0"
+        "yiisoft/yii2-bootstrap4": "^2.0",
+        "kartik-v/yii2-widget-depdrop": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -14,7 +14,7 @@ class PaymentFormButton
                 'class' => 'btn btn-outline-success py-0',
                 'label' => '<i class=" fas  fa-money-bill-alt mr-1" style="color: #68e458;"></i>To\'lov',
             ],
-            'url' => ['student/create'],
+            'url' => ['student/payment'],
             'footer' => '',
             'header' => "<h2>" . 'Student Group' ."</h2>"
         ]);
@@ -36,7 +36,7 @@ class PaymentFormButton
                     ]
                 ]
             ],
-            'url' => ['group/update', 'id' => $id],
+            'url' => ['student/payment', 'id' => $id],
             'footer' => '',
             'header' => "<h2>" . 'Student Group' ."</h2>"
         ]);

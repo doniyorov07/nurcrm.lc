@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var common\models\Lids $model */
+/** @var common\models\Lids $payment */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -14,21 +14,12 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'group_id')->dropDownList(
+    <?= $form->field($payment, 'group_id')->dropDownList(
         ModelToData::getGroup(),
     )
     ?>
 
-    <?= $form->field($model, 'group_created_at')->widget(DatePicker::classname(), [
-        'name' => 'check_issue_date',
-        'options' => ['placeholder' => 'Guruhga qo\'shilgan sana'],
-        'pluginOptions' => [
-            'format' => 'yyyy-mm-dd',
-            'autoclose' => true,
-            'todayHighlight' => true,
-        ],
-    ]);
-    ?>
+    <?= $form->field($payment, 'pay_amount')->textInput(); ?>
 
 
     <div class="form-group">

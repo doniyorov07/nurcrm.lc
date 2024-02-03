@@ -71,12 +71,13 @@ class StudentController extends Controller
         $payment = new Payment();
         $payform= new PaymentForm($payment);
 
-        if ($form->load($this->request->post()) && $form->validate() && $form->save()) {
+        if ($payform->load($this->request->post()) && $payform->validate() && $payform->save()) {
             return $this->redirect(['student/view', 'id' => $models->id]);
         }
 
         return $this->render('view', [
             'model' => $model,
+            'payment' => $payment,
             'models' => $models,
             'groups' => $groups,
         ]);
@@ -100,9 +101,24 @@ class StudentController extends Controller
 
     public function actionPayment()
     {
-        $model = new Payment();
-        return $this->form($model, 'payupdate');
+        $payment = new Payment();
+        return $this->formp($payment, 'payupdate');
     }
+
+
+    public function formp(Payment $payment, $view)
+    {
+        $form = new PaymentForm($payment);
+        if ($form->load($this->request->post()) && $form->save()) {
+            \Yii::$app->session->setFlash('success');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
+        return $this->renderAjax('_payform', [
+            'payment' => $form,
+        ]);
+    }
+
 
     public function actionCreate()
     {
