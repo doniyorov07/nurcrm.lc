@@ -31,39 +31,29 @@ class StudentGroupForm extends Model
         $model->lids_id = $this->lids_id;
         $model->group_id = $this->group_id;
         $model->group_created_at = $this->group_created_at;
-
+        if (!$this->initCheck()) {
+            return false;
+        }
         return $model->save();
     }
 
-
     public function initCheck(): bool
     {
-        $studentGroup = StudentGroup::findOne(['group_id' => $this->group_id, 'lids_id' => $this->lids_id]);
-
-        if ($studentGroup == null) {
-            return true;
-        }
-        $hour = Group::findOne(['group_id' => $this->group_id])->hour;
-
-        $otherGroups = Group::find()
-            ->andWhere(['!=', 'id', $this->group_id])
+        $studentGroup = StudentGroup::find()
+            ->where(['group_id' => $this->group_id])
             ->all();
 
-        foreach ($otherGroups as $otherGroup) {
-            $otherHour = $otherGroup->hour;
-
-            if ($hour === $otherHour) {
-                $otherTeacher = StudentGroup::findOne(['group_id' => $otherGroup->group_id]);
-
-                if ($otherTeacher !== null && ($otherTeacher->lids_id === $this->lids_id || $otherTeacher->lids_id === $studentGroup->lids_id)) {
-                    $this->alert("Guruhni o'qituvchiga biriktirib bo'lmaydi.");
-                    return false;
-                }
+        foreach ($studentGroup as $item) {
+            if ($item->lids_id === $this->lids_id){
+                return false;
             }
         }
 
         return true;
     }
+
+
+
 
 
 
