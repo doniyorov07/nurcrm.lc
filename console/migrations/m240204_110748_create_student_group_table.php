@@ -9,7 +9,7 @@ use yii\db\Migration;
  * - `{{%lids}}`
  * - `{{%group}}`
  */
-class m240124_180125_create_student_group_table extends Migration
+class m240204_110748_create_student_group_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -20,7 +20,7 @@ class m240124_180125_create_student_group_table extends Migration
             'id' => $this->primaryKey(),
             'lids_id' => $this->integer(),
             'group_id' => $this->integer(),
-            'group_created_at' => $this->date(),
+            'group_created_at' => $this->datetime(),
         ]);
 
         // creates index for column `lids_id`
@@ -30,6 +30,7 @@ class m240124_180125_create_student_group_table extends Migration
             'lids_id'
         );
 
+        // add foreign key for table `{{%lids}}`
         $this->addForeignKey(
             '{{%fk-student_group-lids_id}}',
             '{{%student_group}}',

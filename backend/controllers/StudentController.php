@@ -59,7 +59,7 @@ class StudentController extends Controller
     {
         $models = $this->findModel($id);
 
-        $groups = StudentGroup::find()->where(['lids_id' => $models])->all();
+        $groups = StudentGroup::find()->where(['lids_id' => $models->id])->all();
 
         $model = new StudentGroup();
         $form = new StudentGroupForm($model);
@@ -139,42 +139,6 @@ class StudentController extends Controller
         ]);
     }
 
-//    public function actionCreate(int $id): array|string
-//    {
-//        $ids = $this->findModel($id);
-//        $studentgroups = StudentGroup::find()->all();
-//        $model = new StudentGroup([
-//            'lids_id' => $ids->id,
-//        ]);
-//        Yii::$app->response->format = Response::FORMAT_JSON;
-//        if (Yii::$app->request->isAjax) {
-//            $result['status'] = false;
-//            if ($model->load(Yii::$app->request->post())) {
-//                $isAssociationExists = false;
-//                foreach ($studentgroups as $studentgroup) {
-//                    if ($model->lids_id == $studentgroup->lids_id && $model->group_id == $studentgroup->group_id) {
-//                        $isAssociationExists = true;
-//                        break;
-//                    }
-//                }
-//                if (!$isAssociationExists) {
-//                    $model->save(false);
-//                    $result['status'] = true;
-//                    Yii::$app->session->setFlash('success');
-//                } else {
-//                    $result['status'] = false;
-//                    $result['error'] = 'Talaba bu guruhga allaqachon biriktirilgan';
-//                }
-//                return $result;
-//            }
-//            $result['content'] = $this->renderAjax('_form', ['model' => $model]);
-//            return $result;
-//        }
-//
-//        return $this->render('view', [
-//            'model' => $model,
-//        ]);
-//    }
 
 
 

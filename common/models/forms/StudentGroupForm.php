@@ -5,17 +5,15 @@ namespace common\models\forms;
 use common\models\Group;
 use common\models\Lids;
 use common\models\StudentGroup;
-use common\models\Teacher;
 use yii\base\Model;
 
 class StudentGroupForm extends Model
 {
 
     public StudentGroup $model;
-    public  $lids_id;
-    public  $group_id;
-    public  $group_created_at;
-
+    public ?int $lids_id;
+    public ?int $group_id;
+    public ?string $group_created_at;
 
     public function __construct(StudentGroup $model, $config = [])
     {
@@ -27,34 +25,48 @@ class StudentGroupForm extends Model
     }
 
 
-    private bool $isAssociationExists = false;
-
-    public function initStdGroup()
-    {
-        $model = StudentGroup::find()->all();
-
-        foreach ($model as $studentgroup) {
-            if ($this->model->lids_id == $studentgroup->lids_id && $this->model->group_id == $studentgroup->group_id) {
-                $this->isAssociationExists = true;
-                break;
-            }
-        }
-    }
-
-
     public function save(): bool
     {
         $model = $this->model;
-        if ($this->isAssociationExists) {
-            $this->addError('lids_id', 'This student is already assigned to the selected group.');
-            return false;
-        }
         $model->lids_id = $this->lids_id;
         $model->group_id = $this->group_id;
         $model->group_created_at = $this->group_created_at;
-        return $model->save(false);
 
+        return $model->save();
     }
+
+
+    public function initCheck(): bool
+    {
+        $studentGroup = StudentGroup::findOne(['group_id' => $this->group_id, 'lids_id' => $this->lids_id]);
+
+        if ($studentGroup == null) {
+            return true;
+        }
+        $hour = Group::findOne(['group_id' => $this->group_id])->hour;
+
+        $otherGroups = Group::find()
+            ->andWhere(['!=', 'id', $this->group_id])
+            ->all();
+
+        foreach ($otherGroups as $otherGroup) {
+            $otherHour = $otherGroup->hour;
+
+            if ($hour === $otherHour) {
+                $otherTeacher = StudentGroup::findOne(['group_id' => $otherGroup->group_id]);
+
+                if ($otherTeacher !== null && ($otherTeacher->lids_id === $this->lids_id || $otherTeacher->lids_id === $studentGroup->lids_id)) {
+                    $this->alert("Guruhni o'qituvchiga biriktirib bo'lmaydi.");
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+
+
 
 
     public function rules()
@@ -67,10 +79,6 @@ class StudentGroupForm extends Model
         ];
     }
 
-    public function isAssociationExists(): bool
-    {
-        return $this->isAssociationExists;
-    }
 
 
 }
